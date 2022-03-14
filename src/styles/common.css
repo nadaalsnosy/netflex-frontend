@@ -1,0 +1,46 @@
+.text-orange {
+  color: orange !important;
+}
+
+.bottom-shadow {
+  box-shadow: 0px 0px 10px 0px #919090;
+}
+
+.dark-blue {
+  background: #376aa6;
+}
+.w-30 {
+  width: 30% !important;
+}
+.mw-600 {
+  max-width: 600px !important;
+}
+
+.overlay{
+  background: linear-gradient(
+    to bottom,
+    #00000034,
+    #000000
+  );
+  height: 100%;
+}
+
+.bg-black-8{
+  background: #000000be;
+}
+
+.bg-gray{
+background: #525252;
+}
+
+.h-50p{
+  height: 50px;
+}
+
+.bg-gray:focus{
+  background: #686868;
+}
+
+.bg-gray::placeholder{
+  color: #c9c9c9;
+}

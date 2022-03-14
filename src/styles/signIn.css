@@ -1,0 +1,15 @@
+.signForm {
+  max-width: 450px;
+  margin: 50px auto;
+  text-align: left;
+  padding: 100px 50px;
+  border-radius: 10px;
+}
+
+.login-container {
+  background-image: url(../images/signIn-bg.jpg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* height: 850px; */
+}

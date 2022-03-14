@@ -1,0 +1,10 @@
+.navbar-light .navbar-nav .nav-link {
+  color: #000000;
+}
+
+.navbar-collapse {
+  flex-grow: unset !important;
+}
+.bg-white:hover {
+  background: #ececec !important;
+}
