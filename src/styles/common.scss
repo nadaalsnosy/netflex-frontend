@@ -16,31 +16,33 @@
   max-width: 600px !important;
 }
 
-.overlay{
-  background: linear-gradient(
-    to bottom,
-    #00000034,
-    #000000
-  );
+.overlay {
+  background: linear-gradient(to top, #00000083, #000000c5);
   height: 100%;
 }
 
-.bg-black-8{
-  background: #000000be;
+.bg-black-8 {
+  background: #000000ad;
 }
 
-.bg-gray{
-background: #525252;
+.bg-gray {
+  background: #525252;
 }
 
-.h-50p{
+.h-50p {
   height: 50px;
 }
 
-.bg-gray:focus{
+.bg-gray:focus {
   background: #686868;
 }
 
-.bg-gray::placeholder{
+.bg-gray::placeholder {
   color: #c9c9c9;
+}
+
+.centeringBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

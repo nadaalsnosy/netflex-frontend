@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Users from "../pages/Users";
+import Users from "../others/pages/Users";
 import User from "../pages/User";
 import { useState, useMemo, useEffect, createContext } from "react";
 import axios from "axios";

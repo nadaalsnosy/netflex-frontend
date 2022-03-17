@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const UnSigned = () => {
   return (
-    <>
-      <Link className="nav-link" to={`/signIn`}>
-        Sign In
+    <div className="linksBody centeringBody">
+     
+      <Link to={`/signUp`}>
+        <Button variant="danger h-50p mx-3" type="submit">
+          Sign Up
+        </Button>
       </Link>
-      <Link className="nav-link" to={`/signUp`}>
-        Sign Up
+      <Link to={`/signIn`}>
+        <Button variant="danger h-50p mx-3" type="submit">
+          Sign In
+        </Button>
       </Link>
-    </>
+  
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import User from "./User";
-import { UsersContext } from "../modules/UsersModule";
+import { UsersContext } from "../../modules/UsersModule";
 import { Table, Spinner } from "react-bootstrap";
 
 const Users = () => {

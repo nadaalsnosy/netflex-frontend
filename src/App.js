@@ -1,18 +1,28 @@
 import { Suspense } from "react";
 import { Spinner } from "react-bootstrap";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Navbar from "./components/Navbar";
-// import UsersModule from "./modules/UsersModule";
 // import NavbarComp from "./components/Navbar";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import UnSigned from "./pages/UnSigned";
 import Home from "./pages/Home";
-import "./App.css";
 
-// const Home = lazy(() => import("./pages/Home"));
-// const SignIn = lazy(() => import("./pages/SignIn"));
-// const SignUp = lazy(() => import("./pages/SignUp"));
+import NetflixLogo from "./components/NetflixLogo";
+import SigningBackground from "./components/SigningBackground";
+import UnsignedFooter from "./components/UnsignedFooter";
+import "./App.scss";
 
 const App = () => {
+  // const user = true;
+  const user = false;
+
   return (
     <Suspense
       fallback={
@@ -22,17 +32,25 @@ const App = () => {
       }
     >
       <div className="App">
-        <Home />
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <BrowserRouter>
-          <NavbarComp />
+        <BrowserRouter>
+          {/* <NavbarComp /> */}
+          <SigningBackground />
+          <NetflixLogo />
+
           <Routes>
-            <Route path="signUp/" element={<SignUp />} />
-            <Route path="signIn/" element={<SignIn />} />
-            <Route path="users/*" element={<UsersModule />} />
-            <Route path="*" element={<div>404 - NotFound</div>} />
+            <Route element={!user ? <Outlet /> : <Navigate to={"/home"} />}>
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/login" element={<UnSigned />} />
+            </Route>
+
+            <Route element={user ? <Outlet /> : <Navigate to={"/login"} />}>
+              <Route path="/home" element={<Home />} />
+            </Route>
           </Routes>
-        </BrowserRouter> */}
+
+          <UnsignedFooter />
+        </BrowserRouter>
       </div>
     </Suspense>
   );

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import AddNewUser from "../components/AddNewUser";
-import { UsersContext } from "../modules/UsersModule";
+import AddNewUser from "../comm/AddNewUser";
+import { UsersContext } from "../../modules/UsersModule";
 
 const AddUserPage = () => {
 	const { addUser } = useContext(UsersContext);
