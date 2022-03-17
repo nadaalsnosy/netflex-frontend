@@ -9,7 +9,7 @@ const NavbarComp = () => {
         <Container>
           <Navbar.Brand>
             <Link className="navbar-brand fw-bold text-orange" to={`/`}>
-              LOGO
+              Netflix
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
