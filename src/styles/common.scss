@@ -1,5 +1,24 @@
+.overlay {
+  background: linear-gradient(to top, #00000083, #000000c5);
+  height: 100%;
+}
+
 .text-orange {
   color: orange !important;
+}
+
+.shown {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
+}
+.block {
+  display: block;
 }
 
 .bottom-shadow {
@@ -9,24 +28,18 @@
 .dark-blue {
   background: #376aa6;
 }
+.bg-black-8 {
+  background: #000000ad;
+}
+.bg-gray {
+  background: #525252;
+}
+
 .w-30 {
   width: 30% !important;
 }
 .mw-600 {
   max-width: 600px !important;
-}
-
-.overlay {
-  background: linear-gradient(to top, #00000083, #000000c5);
-  height: 100%;
-}
-
-.bg-black-8 {
-  background: #000000ad;
-}
-
-.bg-gray {
-  background: #525252;
 }
 
 .h-50p {
@@ -35,6 +48,7 @@
 
 .bg-gray:focus {
   background: #686868;
+  color: #c9c9c9;
 }
 
 .bg-gray::placeholder {

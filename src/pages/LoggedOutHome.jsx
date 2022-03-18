@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const UnSigned = () => {
+const LoggedOutHome = () => {
   return (
     <div className="linksBody centeringBody">
      
@@ -20,4 +20,4 @@ const UnSigned = () => {
   );
 };
 
-export default UnSigned;
+export default LoggedOutHome;

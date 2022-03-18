@@ -1,4 +1,4 @@
-const SigningBackground = () => {
+const LoggedOutBackground = () => {
   return (
     <div className="login-container">
       <div className="overlay"></div>
@@ -6,4 +6,4 @@ const SigningBackground = () => {
   );
 };
 
-export default SigningBackground;
+export default LoggedOutBackground;

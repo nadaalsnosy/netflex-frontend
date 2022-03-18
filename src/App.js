@@ -1,28 +1,26 @@
 import { Suspense } from "react";
 import { Spinner } from "react-bootstrap";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { AuthProvider } from "./context/AuthProvider";
+import RequireAuth from "./components/RequireAuth";
+import RequireAdminAuth from "./components/RequireAdminAuth";
 
 // import NavbarComp from "./components/Navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import UnSigned from "./pages/UnSigned";
+import LoggedOutHome from "./pages/LoggedOutHome";
+
+import AdminPage from "./pages/AdminPage";
 import Home from "./pages/Home";
 
 import NetflixLogo from "./components/NetflixLogo";
-import SigningBackground from "./components/SigningBackground";
-import UnsignedFooter from "./components/UnsignedFooter";
+import LoggedOutBackground from "./components/LoggedOutBackground";
+import LoggedOutFooter from "./components/LoggedOutFooter";
+
 import "./App.scss";
 
 const App = () => {
-  // const user = true;
-  const user = false;
-
   return (
     <Suspense
       fallback={
@@ -33,23 +31,28 @@ const App = () => {
     >
       <div className="App">
         <BrowserRouter>
-          {/* <NavbarComp /> */}
-          <SigningBackground />
-          <NetflixLogo />
+          <AuthProvider>
+            {/* <NavbarComp /> */}
+            <LoggedOutBackground />
+            <NetflixLogo />
+            <Routes>
+              <Route>
+                <Route path="/signUp/" element={<SignUp />} />
+                <Route path="/signIn" element={<SignIn />} />
+                <Route path="/" element={<LoggedOutHome />} />
 
-          <Routes>
-            <Route element={!user ? <Outlet /> : <Navigate to={"/home"} />}>
-              <Route path="/signUp" element={<SignUp />} />
-              <Route path="/signIn" element={<SignIn />} />
-              <Route path="/login" element={<UnSigned />} />
-            </Route>
+                <Route element={<RequireAuth />}>
+                  <Route path="/home" element={<Home />} />
 
-            <Route element={user ? <Outlet /> : <Navigate to={"/login"} />}>
-              <Route path="/home" element={<Home />} />
-            </Route>
-          </Routes>
+                  <Route element={<RequireAdminAuth />}>
+                    <Route path="/adminPage" element={<AdminPage />} />
+                  </Route>
+                </Route>
+              </Route>
+            </Routes>
 
-          <UnsignedFooter />
+            <LoggedOutFooter />
+          </AuthProvider>
         </BrowserRouter>
       </div>
     </Suspense>

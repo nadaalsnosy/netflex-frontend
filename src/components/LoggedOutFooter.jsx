@@ -1,13 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import netflexFont from "../images/netflixFont.png";
-// import { Link } from "react-router-dom";
 
 import { faPinterest } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
-const UnsignedFooter = () => {
+const LoggedOutFooter = () => {
   return (
     <div className="footerLight centeringBody">
       <div className="d-flex justify-content-between">
@@ -52,4 +51,4 @@ const UnsignedFooter = () => {
   );
 };
 
-export default UnsignedFooter;
+export default LoggedOutFooter;

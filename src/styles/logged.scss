@@ -16,7 +16,20 @@
   z-index: -1;
 }
 
-
-.linksBody{
+.linksBody {
   height: 70vh;
+}
+
+.errMsg {
+  color: #e87c03;
+  font-size: 14px;
+  margin: 7px;
+}
+
+.errInput,
+.errInput:focus {
+  border-bottom: 3px solid #e87c03 !important;
+  outline: none;
+  box-shadow: none;
+  color: #c9c9c9;
 }

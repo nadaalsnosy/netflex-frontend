@@ -1,8 +1,10 @@
 @import "./styles/common.scss";
-@import "./styles/signIn.scss";
+@import "./styles/logged.scss";
 @import "./styles/modified.scss";
-@import "./styles/unsigned.scss";
+@import "./styles/loggedOut.scss";
 @import "./styles/home.scss";
+@import "./styles/navbarcomp.scss";
+
 
 
 .App {
