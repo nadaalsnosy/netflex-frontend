@@ -14,10 +14,6 @@ import LoggedOutHome from "./pages/LoggedOutHome";
 import AdminPage from "./pages/AdminPage";
 import Home from "./pages/Home";
 
-import NetflixLogo from "./components/NetflixLogo";
-import LoggedOutBackground from "./components/LoggedOutBackground";
-import LoggedOutFooter from "./components/LoggedOutFooter";
-
 import "./App.scss";
 
 const App = () => {
@@ -33,13 +29,13 @@ const App = () => {
         <BrowserRouter>
           <AuthProvider>
             {/* <NavbarComp /> */}
-            <LoggedOutBackground />
-            <NetflixLogo />
             <Routes>
               <Route>
-                <Route path="/signUp/" element={<SignUp />} />
-                <Route path="/signIn" element={<SignIn />} />
-                <Route path="/" element={<LoggedOutHome />} />
+                <Route>
+                  <Route path="/signUp/" element={<SignUp />} />
+                  <Route path="/signIn" element={<SignIn />} />
+                  <Route path="/" element={<LoggedOutHome />} />
+                </Route>
 
                 <Route element={<RequireAuth />}>
                   <Route path="/home" element={<Home />} />
@@ -50,8 +46,6 @@ const App = () => {
                 </Route>
               </Route>
             </Routes>
-
-            <LoggedOutFooter />
           </AuthProvider>
         </BrowserRouter>
       </div>

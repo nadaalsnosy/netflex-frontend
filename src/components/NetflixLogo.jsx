@@ -1,9 +1,12 @@
 import logo from "../images/Logonetflix.png";
+import { Link } from "react-router-dom";
 
 const NetflixLogo = () => {
   return (
     <div>
-      <img src={logo} className="netflexImg" alt="netflix-logo" />
+      <Link to={`/`}>
+        <img src={logo} className="netflexImg" alt="netflix-logo" />
+      </Link>
     </div>
   );
 };

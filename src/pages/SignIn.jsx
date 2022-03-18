@@ -4,6 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 
+import NetflixLogo from "../components/NetflixLogo";
+import LoggedOutBackground from "../components/LoggedOutBackground";
+import LoggedOutFooter from "../components/LoggedOutFooter";
+
 const SignInPage = () => {
   const userRef = useRef();
   const navigate = useNavigate();
@@ -56,7 +60,7 @@ const SignInPage = () => {
 
       setUserEmail("");
       setUserPassword("");
-      navigate("/users");
+      navigate("/home");
     } catch (err) {
       if (!err?.response) {
         console.log("No Server Response");
@@ -72,59 +76,67 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
-      <Form className="signForm text-white bg-black-8" onSubmit={handelSubmit}>
-        <h1 className=" mb-5 fw-bold ">Sign In</h1>
+    <>
+      <LoggedOutBackground />
+      <NetflixLogo />
+      <div>
+        <Form
+          className="signForm text-white bg-black-8"
+          onSubmit={handelSubmit}
+        >
+          <h1 className=" mb-5 fw-bold ">Sign In</h1>
 
-        <Form.Group className="mb-4" controlId="formGridEmail">
-          <Form.Control
-            className={`bg-gray h-50p border-0 ${errMsg ? "errInput" : ""}`}
-            type="email"
-            placeholder="Enter email"
-            ref={userRef}
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-            required
-          />
-          <p
-            className={`errMsg ${errMsg ? "shown" : "hidden"} `}
-            aria-live="assertive"
-          >
-           Invalid Email or Password
-          </p>
-        </Form.Group>
+          <Form.Group className="mb-4" controlId="formGridEmail">
+            <Form.Control
+              className={`bg-gray h-50p border-0 ${errMsg ? "errInput" : ""}`}
+              type="email"
+              placeholder="Enter email"
+              ref={userRef}
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              required
+            />
+            <p
+              className={`errMsg ${errMsg ? "shown" : "hidden"} `}
+              aria-live="assertive"
+            >
+              Invalid Email or Password
+            </p>
+          </Form.Group>
 
-        <Form.Group className="mb-4" controlId="formGridPassword">
-          <Form.Control
-            className={`bg-gray h-50p border-0 ${errMsg ? "errInput" : ""}`}
-            type="password"
-            placeholder="Password"
-            ref={userRef}
-            value={userPassword}
-            onChange={(e) => setUserPassword(e.target.value)}
-            required
-          />
-          <p
-            className={`errMsg ${errMsg ? "shown" : "hidden"} `}
-            aria-live="assertive"
-          >
-           Invalid Email or Password
-          </p>
-        </Form.Group>
+          <Form.Group className="mb-4" controlId="formGridPassword">
+            <Form.Control
+              className={`bg-gray h-50p border-0 ${errMsg ? "errInput" : ""}`}
+              type="password"
+              placeholder="Password"
+              ref={userRef}
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
+              required
+            />
+            <p
+              className={`errMsg ${errMsg ? "shown" : "hidden"} `}
+              aria-live="assertive"
+            >
+              Invalid Email or Password
+            </p>
+          </Form.Group>
 
-        <div className="text-end my-5">
-          <Button variant="danger w-100 h-50p" type="submit">
-            sign in
-          </Button>
-        </div>
-        <div className="mt-5">
-          New to Netflix?{" "}
-          <Link className="text-primary text-decoration-none" to={`/signUp`}>
-            Sign Up Now.
-          </Link>
-        </div>
-      </Form>
-    </div>
+          <div className="text-end my-5">
+            <Button variant="danger w-100 h-50p" type="submit">
+              sign in
+            </Button>
+          </div>
+          <div className="mt-5">
+            New to Netflix?{" "}
+            <Link className="text-primary text-decoration-none" to={`/signUp`}>
+              Sign Up Now.
+            </Link>
+          </div>
+        </Form>
+      </div>
+      <LoggedOutFooter />
+    </>
   );
 };
 
