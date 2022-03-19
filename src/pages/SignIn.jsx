@@ -5,14 +5,14 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 
 import NetflixLogo from "../components/NetflixLogo";
-import LoggedOutBackground from "../components/LoggedOutBackground";
-import LoggedOutFooter from "../components/LoggedOutFooter";
+import LoggedOutBackground from "../components/LoggedOut/LoggedOutBackground";
+import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
 
 const SignInPage = () => {
   const userRef = useRef();
   const navigate = useNavigate();
-
   const { auth, setAuth } = useAuth();
+
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -25,12 +25,6 @@ const SignInPage = () => {
   useEffect(() => {
     setErrMsg("");
   }, [userEmail, userPassword]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    setAuth({ token, user });
-  }, [setAuth]);
 
   const handelSubmit = async (e) => {
     e.preventDefault();

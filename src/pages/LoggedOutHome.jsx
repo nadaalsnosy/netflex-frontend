@@ -4,9 +4,9 @@ import { Button } from "react-bootstrap";
 import logo from "../images/Logonetflix.png";
 import oieImg from "../images/oieImg.gif";
 
-import LoggedOutFooter from "../components/LoggedOutFooter";
-import LoggedOutCardsContainer from "../components/LoggedOutCardsContainer";
-import LoggedOutAccordion from "../components/LoggedOutAccordion";
+import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
+import LoggedOutCardsContainer from "../components/LoggedOut/LoggedOutCardsContainer";
+import LoggedOutAccordion from "../components/LoggedOut/LoggedOutAccordion";
 
 const LoggedOutHome = () => {
   return (

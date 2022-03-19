@@ -2,10 +2,11 @@ import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
 
 import NetflixLogo from "../components/NetflixLogo";
-import LoggedOutBackground from "../components/LoggedOutBackground";
-import LoggedOutFooter from "../components/LoggedOutFooter";
+import LoggedOutBackground from "../components/LoggedOut/LoggedOutBackground";
+import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
 
 const userREGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,20}$/;
 const emailREGEX = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
@@ -15,6 +16,7 @@ const SignUpPage = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
 
   const [userName, setUserName] = useState("");
   const [validName, setValidName] = useState(false);
@@ -33,7 +35,6 @@ const SignUpPage = () => {
   const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-  const [succssMsg, setSuccssMsg] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -81,8 +82,15 @@ const SignUpPage = () => {
           headers: { "content-type": "application/json" },
         }
       );
+      const token = res?.data?.token;
+      const user = res?.data?.user;
+
+      setAuth({ token, user });
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      
       console.log(res);
-      setSuccssMsg(true);
       setUserName("");
       setUserEmail("");
       setUserPassword("");

@@ -1,10 +1,10 @@
 import LoggedOutCard from "./LoggedOutCard";
 import { Spinner } from "react-bootstrap";
 
-import tvFrame from "../images/tv.png";
-import PhoneImg from "../images/mobile11.jpg";
-import devicePile from "../images/device-pile.png";
-import anime from "../images/lastOne.png";
+import tvFrame from "../../images/tv.png";
+import PhoneImg from "../../images/mobile11.jpg";
+import devicePile from "../../images/device-pile.png";
+import anime from "../../images/lastOne.png";
 
 const LoggedOutCardsContainer = () => {
   const loggedOutCards = [
@@ -42,7 +42,7 @@ const LoggedOutCardsContainer = () => {
   return (
     <>
       {loggedOutCards ? (
-        loggedOutCards.map((card) => <LoggedOutCard key={card.id} {...card} />)
+        loggedOutCards.map((card) => <LoggedOutCard key={card.imgName} {...card} />)
       ) : (
         <div className="centeringBody">
           <Spinner animation="border" variant="primary" />

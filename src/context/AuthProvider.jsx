@@ -23,11 +23,16 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }, [auth]);
+  }, [auth, auth.user, auth.token]);
   console.log(auth);
+  console.log(token);
+  console.log(user);
+
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider
+      value={({ auth, setAuth })}
+    >
       {children}
     </AuthContext.Provider>
   );
