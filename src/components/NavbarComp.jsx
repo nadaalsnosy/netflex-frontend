@@ -12,41 +12,6 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 const NavbarComp = () => {
   return (
-    //     <div className="Navbar">
-    //       <div className="container">
-    //         <div className="left">
-
-    // <img src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8" alt=""/>
-
-    // <Link to="/" className="link"><span>Home</span></Link>
-
-    //   <Link to="tv-show" className="link"><span>TV Shows</span></Link>
-
-    //   <Link to="movies" className="link"><span>Movies</span></Link>
-    //   <Link to="newpop" className="link"><span>New & Popular</span></Link>
-    //   <Link to="list" className="link"><span>My List</span></Link>
-
-    //         </div>
-
-    //       <div className="right">
-    // <SearchOutlinedIcon className="icon"/>
-    // <span>KID</span>
-    // <NotificationsIcon className="icon"/>
-    // <img src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1" alt=""/>
-    //   <div className="profile">
-    //       <ArrowDropDownIcon className="icon"/>
-    //       <div className="options">
-    //           <span>Settings</span>
-    //           <span>Logout</span>
-
-    //       </div>
-    //       </div>
-
-    // </div>
-
-    //       </div>
-    //       </div>
-
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
