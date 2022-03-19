@@ -1,11 +1,11 @@
-
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link } from "react-router-dom";
 
 import {
   Navbar,
   Container,
   Nav,
- NavDropdown,
+  NavDropdown,
   Form,
   FormControl,
 } from "react-bootstrap";
@@ -62,7 +62,9 @@ const NavbarComp = () => {
             <Nav className="me-auto">
               <Nav.Link href="#Home">Home</Nav.Link>
               <Nav.Link href="#shows">TV Shows</Nav.Link>
-              <Nav.Link href="#movies">Movies</Nav.Link>
+              <Link className="nav-link" to={"/movies"}>
+                Movies
+              </Link>
               <Nav.Link href="#newpopular">New & Popular</Nav.Link>
               <Nav.Link href="#mylist">My List</Nav.Link>
             </Nav>
@@ -78,27 +80,23 @@ const NavbarComp = () => {
                   <SearchOutlinedIcon className="icon" />
                 </Form>
               </Nav.Link>
-              
+
               <img
-                      className="avatar"
-                      src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1"
-                      alt=""
-                   />
-              <Nav.Link eventKey={2}  href="#memes">
-                <NavDropdown 
-                  title=""
-                  id="collasible-nav-dropdown" 
-        >
+                className="avatar"
+                src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1"
+                alt=""
+              />
+              <Nav.Link eventKey={2} href="#memes">
+                <NavDropdown title="" id="collasible-nav-dropdown">
                   <NavDropdown.Item className="text-white" href="">
                     Account
                   </NavDropdown.Item>
 
-                  <NavDropdown.Divider className="text-white"/>
+                  <NavDropdown.Divider className="text-white" />
                   <NavDropdown.Item className="text-white" href="">
                     Sign out of Netflix
                   </NavDropdown.Item>
                 </NavDropdown>
-               
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

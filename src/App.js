@@ -8,7 +8,6 @@ import NeedLogin from "./components/NeedLogin";
 
 import RequireAdminAuth from "./components/RequireAdminAuth";
 
-// import NavbarComp from "./components/Navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LoggedOutHome from "./pages/LoggedOutHome";
@@ -17,6 +16,7 @@ import AdminPage from "./pages/AdminPage";
 import Home from "./pages/Home";
 
 import "./App.scss";
+import Movies from "./pages/Movies";
 
 const App = () => {
   return (
@@ -30,7 +30,6 @@ const App = () => {
       <div className="App">
         <BrowserRouter>
           <AuthProvider>
-            {/* <NavbarComp /> */}
             <Routes>
               <Route>
                 <Route element={<NeedLogin />}>
@@ -41,6 +40,7 @@ const App = () => {
 
                 {/* <Route element={<RequireAuth />}> */}
                 <Route path="/home" element={<Home />} />
+                <Route path="/movies" element={<Movies />} />
 
                 <Route element={<RequireAdminAuth />}>
                   <Route path="/adminPage" element={<AdminPage />} />
