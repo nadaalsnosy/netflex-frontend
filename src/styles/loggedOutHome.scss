@@ -16,12 +16,15 @@
   h1 {
     font-size: 35px;
     text-shadow: 0px 0px 10px #fc0505;
+    margin-bottom: 80px;
   }
   .gifImg {
+    width: 40vw;
+    max-width: 270px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    bottom: 0;
+    bottom: -5px;
   }
 }
 
@@ -126,4 +129,4 @@
   .card-container .cardTitle {
     margin-bottom: 100px;
   }
-} ;
+} 
