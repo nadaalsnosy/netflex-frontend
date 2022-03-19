@@ -15,39 +15,42 @@ const MainBanner = () => {
       <div className="bannerInfo">
         <div className="container text-white">
           <h1>Film Title</h1>
-          <p>sdfsfsdfsdf</p>
+          {/* <video autoPlay loop muted>
+            <source src="https://www.youtube.com/embed/JfVOs4VSpmA" type="video/mp4" />
+            
+          </video> */}
+          <div>
+            <iframe
+              auto
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/JfVOs4VSpmA?I?&autoplay=1&mute=1&controls=0&showinfo=1&rel=0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima at
+            molestiae adipisci, ducimus possimus
+          </p>
           <div className="linksContent">
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={1}>
               <Button
-                variant="outlined bg-White text-dark fs-8"
+                variant="outlined bg-White text-dark fs-8 banberBtn"
                 startIcon={<PlayArrow />}
               >
                 Play
               </Button>
               <Button
-                variant="contained bg-grey text-white fs-8"
+                variant="contained bg-grey text-white fs-8 banberBtn text-capitalize"
                 startIcon={<InfoOutlined />}
               >
                 More Info
               </Button>
-              <Button
-                variant="contained bg-grey text-white fs-8"
-                endIcon={<InfoOutlined />}
-              >
-                More Info
-              </Button>
             </Stack>
-
-            {/* <Link to={`/signUp`}>
-              <Button variant="light mx-1 py-0 pb-1" type="submit">
-                Sign Up
-              </Button>
-            </Link>
-            <Link to={`/signIn`}>
-              <Button variant="secondary mx-1 py-0 pb-1" type="submit">
-                Sign In
-              </Button>
-            </Link> */}
           </div>
         </div>
       </div>

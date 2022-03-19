@@ -16,5 +16,26 @@
     left: 0;
     top: 50%;
     transform: translate(0, -50%);
+    p {
+      width: 200px;
+      font-size: 12px;
+      line-height: 14px;
+    }
   }
+  .banberBtn {
+    padding: 4px 10px !important;
+  }
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .mainContainer .bannerInfo p {
+    width: 250px;
+    font-size: 15px;
+    line-height: 17px;
+  }
+}
+@media (min-width: 992px) {
 }

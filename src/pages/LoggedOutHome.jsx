@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 
 import logo from "../images/Logonetflix.png";
 import oieImg from "../images/oieImg.gif";
+import helloGif from "../images/helloGif.gif";
 
 import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
 import LoggedOutCardsContainer from "../components/LoggedOut/LoggedOutCardsContainer";
@@ -37,7 +38,7 @@ const LoggedOutHome = () => {
             <h1 className="fw-bold text-white text-center">
               Welcome To Our Netflix
             </h1>
-            <img className="gifImg" src={oieImg} alt="oieImg" />
+            <img className="gifImg" src={helloGif} alt="oieImg" />
           </div>
         </div>
       </section>
