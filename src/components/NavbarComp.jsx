@@ -1,5 +1,6 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";
+import avatarImg from "../images/avatar.png";
 
 import {
   Navbar,
@@ -9,22 +10,26 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 const NavbarComp = () => {
+  const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar className="bg-black p-lg-0" expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
             <img
-              className="Netflix"
+              className="netflix"
               src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8"
               alt=""
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
+          <Navbar.Collapse
+            className="justify-content-between"
+            id="responsive-navbar-nav"
+          >
+            <Nav className="me-auto flex-row justify-content-around border border-secondary border-end-0 border-start-0 my-3 m-lg-0 border-lg-0">
               <Nav.Link href="#Home">Home</Nav.Link>
               <Nav.Link href="#shows">TV Shows</Nav.Link>
               <Link className="nav-link" to={"/movies"}>
@@ -33,12 +38,13 @@ const NavbarComp = () => {
               <Nav.Link href="#newpopular">New & Popular</Nav.Link>
               <Nav.Link href="#mylist">My List</Nav.Link>
             </Nav>
-            <Nav className="align-items-center">
-              <Nav.Link href="#deets">
-                <Form className="d-flex">
+
+            <Nav className="align-items-center flex-row">
+              <Nav.Link className="flex-grow-1">
+                <Form className="d-flex align-items-center">
                   <FormControl
                     type="search"
-                    placeholder="Titles,people,genres "
+                    placeholder="Titles, Genres "
                     className="me-2 searchInput"
                     aria-label="Search"
                   />
@@ -46,19 +52,14 @@ const NavbarComp = () => {
                 </Form>
               </Nav.Link>
 
-              <img
-                className="avatar"
-                src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1"
-                alt=""
-              />
-              <Nav.Link eventKey={2} href="#memes">
-                <NavDropdown title="" id="collasible-nav-dropdown">
-                  <NavDropdown.Item className="text-white" href="">
+              <Nav.Link className="ms-5 me-2 m-lg-0" eventKey={2} href="#memes">
+                <NavDropdown title={avatar} id="collasible-nav-dropdown">
+                  <NavDropdown.Item className="text-white">
                     Account
                   </NavDropdown.Item>
 
                   <NavDropdown.Divider className="text-white" />
-                  <NavDropdown.Item className="text-white" href="">
+                  <NavDropdown.Item className="text-white">
                     Sign out of Netflix
                   </NavDropdown.Item>
                 </NavDropdown>

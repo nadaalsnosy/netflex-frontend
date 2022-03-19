@@ -15,22 +15,11 @@ const MainBanner = () => {
       <div className="bannerInfo">
         <div className="container text-white">
           <h1>Film Title</h1>
-          {/* <video autoPlay loop muted>
-            <source src="https://www.youtube.com/embed/JfVOs4VSpmA" type="video/mp4" />
-            
-          </video> */}
-          <div>
-            <iframe
-              auto
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/JfVOs4VSpmA?I?&autoplay=1&mute=1&controls=0&showinfo=1&rel=0"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
+          {/* <video
+            autoPlay
+            muted
+            src="https://rr5---sn-hgn7yn7e.c.drive.google.com/videoplayback?expire=1647741975&ei=11M2YpqJKMOB_9EPwva36AU&ip=41.42.50.160&cp=QVRJWUhfUFlVRlhPOjNrYlZLVGh5Wkg3eTdYUkJnT1BZSThXOWlVS1FaUnFCRlp4VUV5clpaQWM&id=8d350252959c6acb&itag=18&source=webdrive&requiressl=yes&mh=en&mm=32&mn=sn-hgn7yn7e&ms=su&mv=m&mvi=2&pl=20&ttl=transient&susc=dr&driveid=1gThxBpGEkuy7Xg2pvsUlTbJtIjk8zkOv&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=184.087&lmt=1647718918492460&mt=1647727227&subapp=DRIVE_WEB_FILE_VIEWER&txp=0011224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRQIhAIVW-fMzXAi06QFQ_lcMhr6_wVwFuZ623z9aVHlDo_smAiAgWWquuGtCw4DY4tgd8c-Zn7VzRkH4m5NmPJot-5CRZg==&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIgWjzjcns1QdtVoBYB-MeP4RFLggm_CyUQAI8NnTgxrlACIQCzytj-XCS4Sduvj1y1DdDQHeUIGvNHWhEqK29fMbkBcA==&cpn=fkRg0bqiKqD74A7O&c=WEB_EMBEDDED_PLAYER&cver=1.20220316.01.00&ir=1&rr=12&fexp=24162928"
+          ></video> */}
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima at
