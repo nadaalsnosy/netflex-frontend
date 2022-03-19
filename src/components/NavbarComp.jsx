@@ -1,42 +1,105 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
-import React from "react";
-import { Link } from "react-router-dom";
 
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+
+import {
+  Navbar,
+  Container,
+  Nav,
+ NavDropdown,
+  Form,
+  FormControl,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 const NavbarComp = () => {
   return (
+    //     <div className="Navbar">
+    //       <div className="container">
+    //         <div className="left">
+
+    // <img src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8" alt=""/>
+
+    // <Link to="/" className="link"><span>Home</span></Link>
+
+    //   <Link to="tv-show" className="link"><span>TV Shows</span></Link>
+
+    //   <Link to="movies" className="link"><span>Movies</span></Link>
+    //   <Link to="newpop" className="link"><span>New & Popular</span></Link>
+    //   <Link to="list" className="link"><span>My List</span></Link>
+
+    //         </div>
+
+    //       <div className="right">
+    // <SearchOutlinedIcon className="icon"/>
+    // <span>KID</span>
+    // <NotificationsIcon className="icon"/>
+    // <img src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1" alt=""/>
+    //   <div className="profile">
+    //       <ArrowDropDownIcon className="icon"/>
+    //       <div className="options">
+    //           <span>Settings</span>
+    //           <span>Logout</span>
+
+    //       </div>
+    //       </div>
+
+    // </div>
+
+    //       </div>
+    //       </div>
+
     <>
-      <Navbar className="bottom-shadow" bg="light" expand="lg">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand>
-            <Link className="navbar-brand fw-bold text-orange" to={`/`}>
-              Netflix
-            </Link>
+          <Navbar.Brand href="#home">
+            <img
+              className="Netflix"
+              src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8"
+              alt=""
+            />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link className="nav-link" to={`/users`}>
-                Users
-              </Link>
-              <Nav.Link href="">Offers</Nav.Link>
-              <Nav.Link href="">Contact Us</Nav.Link>
+              <Nav.Link href="#Home">Home</Nav.Link>
+              <Nav.Link href="#shows">TV Shows</Nav.Link>
+              <Nav.Link href="#movies">Movies</Nav.Link>
+              <Nav.Link href="#newpopular">New & Popular</Nav.Link>
+              <Nav.Link href="#mylist">My List</Nav.Link>
+            </Nav>
+            <Nav className="align-items-center">
+              <Nav.Link href="#deets">
+                <Form className="d-flex">
+                  <FormControl
+                    type="search"
+                    placeholder="Titles,people,genres "
+                    className="me-2 searchInput"
+                    aria-label="Search"
+                  />
+                  <SearchOutlinedIcon className="icon" />
+                </Form>
+              </Nav.Link>
+              
+              <img
+                      className="avatar"
+                      src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1"
+                      alt=""
+                   />
+              <Nav.Link eventKey={2}  href="#memes">
+                <NavDropdown 
+                  title=""
+                  id="collasible-nav-dropdown" 
+        >
+                  <NavDropdown.Item className="text-white" href="">
+                    Account
+                  </NavDropdown.Item>
 
-              <NavDropdown title="Currency" id="basic-nav-dropdown">
-                <NavDropdown.Item href="">Euro</NavDropdown.Item>
-                <NavDropdown.Item href="">Pound</NavDropdown.Item>
-                <NavDropdown.Item href="">Dollar</NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Language" id="basic-nav-dropdown">
-                <NavDropdown.Item href="">English</NavDropdown.Item>
-                <NavDropdown.Item href="">Arabic</NavDropdown.Item>
-              </NavDropdown>
-
-              <Link className="nav-link" to={`/signIn`}>
-                Sign In
-              </Link>
-              <Link className="nav-link" to={`/signUp`}>
-                Sign Up
-              </Link>
+                  <NavDropdown.Divider className="text-white"/>
+                  <NavDropdown.Item className="text-white" href="">
+                    Sign out of Netflix
+                  </NavDropdown.Item>
+                </NavDropdown>
+               
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
