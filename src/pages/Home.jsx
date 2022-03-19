@@ -2,11 +2,13 @@ import logo from "../logo.svg";
 import React from "react";
 import useAuth from "../hooks/useAuth";
 import MainBanner from "../components/MainBanner";
+import NavbarComp from "../components/NavbarComp";
 
 const Home = () => {
   const { auth } = useAuth();
   return (
     <>
+    <NavbarComp/>
       <MainBanner />
       <div className="App">
         <header className="App-header">
