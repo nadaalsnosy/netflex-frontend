@@ -12,14 +12,26 @@
     object-fit: contain;
   }
   .bannerInfo {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0, -50%);
-    p {
-      width: 200px;
-      font-size: 12px;
-      line-height: 14px;
+    .selectContainer {
+      position: absolute;
+      bottom: 145px;
+    }
+    .movieBannerContainer {
+      position: absolute;
+      bottom: 10px;
+      p {
+        width: 200px;
+        font-size: 12px;
+        line-height: 14px;
+      }
+      .typeTitle {
+        font-size: 25px;
+      }
+    }
+  }
+  .selectContainer {
+    .dropdown-menu {
+      min-width: 100px !important;
     }
   }
   .banberBtn {
@@ -28,14 +40,45 @@
 }
 
 @media (min-width: 576px) {
+  .mainContainer .bannerInfo {
+    .selectContainer {
+      bottom: 200px;
+    }
+    .movieBannerContainer {
+      bottom: 50px;
+    }
+  }
 }
 
 @media (min-width: 768px) {
-  .mainContainer .bannerInfo p {
-    width: 250px;
-    font-size: 15px;
-    line-height: 17px;
+  .mainContainer .bannerInfo {
+    .selectContainer {
+      bottom: 270px;
+    }
+    .movieBannerContainer {
+      bottom: 80px;
+      p {
+        width: 250px;
+        font-size: 15px;
+        line-height: 17px;
+      }
+      .typeTitle {
+        font-size: 35px;
+      }
+    }
   }
 }
 @media (min-width: 992px) {
+  .mainContainer .bannerInfo {
+    .selectContainer {
+      margin-bottom: 70px !important;
+      bottom: 300px;
+      .typeTitle {
+        font-size: 55px;
+      }
+    }
+    .movieBannerContainer {
+      bottom: 150px;
+    }
+  }
 }

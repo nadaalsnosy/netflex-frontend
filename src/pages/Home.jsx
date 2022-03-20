@@ -8,7 +8,7 @@ const Home = () => {
   const { auth } = useAuth();
   return (
     <>
-    <NavbarComp/>
+      <NavbarComp />
       <MainBanner />
       <div className="App">
         <header className="App-header">

@@ -17,7 +17,7 @@
 .dropdown-item:hover {
   background-color: #383c41 !important;
 }
-.dropdown-menu {
+.nav-item .dropdown-menu {
   position: absolute !important;
   background-color: #212529e8 !important;
   border: 1.5px solid #616161f1 !important;
@@ -32,5 +32,16 @@
 @media (min-width: 992px) {
   .navbar-nav {
     border: 0 !important;
+  }
+  .bg-lg-black {
+    background: #000000 !important;
+  }
+  .homeNavbar {
+    background: linear-gradient(
+      to top,
+      transparent 0%,
+      #0000009e,
+      #00000052
+    ) !important;
   }
 }

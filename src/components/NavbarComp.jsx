@@ -1,4 +1,5 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import avatarImg from "../images/avatar.png";
 
@@ -13,9 +14,25 @@ import {
 
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
+  const [isScrolled, setIsScrolled] = useState();
+
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
+
+  console.log(isScrolled);
+
   return (
     <>
-      <Navbar className="bg-black p-lg-0" expand="lg" bg="dark" variant="dark">
+      <Navbar
+        className={`${
+          isScrolled ? "bg-lg-black" : "homeNavbar"
+        } bg-black p-lg-0 fixed-top`}
+        expand="lg"
+        bg="dark"
+        variant="dark"
+      >
         <Container>
           <Navbar.Brand>
             <img
@@ -39,7 +56,7 @@ const NavbarComp = () => {
               <Nav.Link href="#mylist">My List</Nav.Link>
             </Nav>
 
-            <Nav className="align-items-center flex-row">
+            <Nav className="align-items-center flex-row px-3">
               <Nav.Link className="flex-grow-1">
                 <Form className="d-flex align-items-center">
                   <FormControl
