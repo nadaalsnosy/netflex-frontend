@@ -38,7 +38,7 @@ const NavbarComp = () => {
             <img
               className="netflix"
               src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8"
-              alt=""
+              alt="netflixLogo"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -47,17 +47,22 @@ const NavbarComp = () => {
             id="responsive-navbar-nav"
           >
             <Nav className="me-auto flex-row justify-content-around border border-secondary border-end-0 border-start-0 my-3 m-lg-0 border-lg-0">
-              <Nav.Link href="#Home">Home</Nav.Link>
-              <Nav.Link href="#shows">TV Shows</Nav.Link>
+              <Link className="nav-link" to={"/home"}>
+                Home
+              </Link>
+              <Link className="nav-link" to={"/series"}>
+                TV Shows
+              </Link>
               <Link className="nav-link" to={"/movies"}>
                 Movies
               </Link>
-              <Nav.Link href="#newpopular">New & Popular</Nav.Link>
-              <Nav.Link href="#mylist">My List</Nav.Link>
+              <Link className="nav-link" to={"/myList"}>
+                My List
+              </Link>
             </Nav>
 
             <Nav className="align-items-center flex-row px-3">
-              <Nav.Link className="flex-grow-1">
+              <Nav.Link className="flex-grow-1" to={"/"}>
                 <Form className="d-flex align-items-center">
                   <FormControl
                     type="search"
@@ -69,18 +74,21 @@ const NavbarComp = () => {
                 </Form>
               </Nav.Link>
 
-              <Nav.Link className="ms-5 me-2 m-lg-0" eventKey={2} href="#memes">
-                <NavDropdown title={avatar} id="collasible-nav-dropdown">
-                  <NavDropdown.Item className="text-white">
-                    Account
-                  </NavDropdown.Item>
+              <NavDropdown
+                className="ms-5 me-2 m-lg-0"
+                title={avatar}
+                id="collasible-nav-dropdown"
+                to={"/"}
+              >
+                <NavDropdown.Item className="text-white">
+                  Account
+                </NavDropdown.Item>
 
-                  <NavDropdown.Divider className="text-white" />
-                  <NavDropdown.Item className="text-white">
-                    Sign out of Netflix
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav.Link>
+                <NavDropdown.Divider className="text-white" />
+                <NavDropdown.Item className="text-white">
+                  Sign out of Netflix
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
