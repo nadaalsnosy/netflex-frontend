@@ -1,7 +1,17 @@
+import MovieCard from "./MovieCard";
+
 const ListItem = () => {
+  
+  
   return (
     <>
-      <div className="listItemTest text-black">ListItem</div>
+      <div
+        className="listItemTest text-black"
+       
+      >
+        <MovieCard />
+       
+      </div>
     </>
   );
 };

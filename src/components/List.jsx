@@ -49,21 +49,17 @@ const List = () => {
             onClick={() => handelShowCards("left")}
           />
           <div className="itemsContainer" ref={listRef}>
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
-            <ListItem />
+            <ListItem index={0}/>
+            <ListItem index={1}/>
+            <ListItem index={2}/>
+            <ListItem index={3}/>
+            <ListItem index={4}/>
+            <ListItem index={5}/>
+            <ListItem index={6}/>
+            <ListItem index={7}/>
+            <ListItem index={8}/>
+            <ListItem index={9}/>
+            
           </div>
           <ArrowForwardIosRounded
             className={`${slideNum === 13 ? "none" : ""} sliderArrow end-0`}
