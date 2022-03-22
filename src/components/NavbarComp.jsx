@@ -1,7 +1,7 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import avatarImg from "../images/avatar.png";
+import avatarImg from "../images/avatar.PNG";
 
 import {
   Navbar,

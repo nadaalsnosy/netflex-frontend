@@ -14,11 +14,14 @@ border-radius: 3px  !important;
      &:hover{
         width: 18rem !important;
         height:19rem !important;
+        position:absolute;
+        top: -150px;
         
      }
 }
 .cardMatching{
     color:rgb(14, 199, 14);
+    margin-right: 10px !important;
 }
 .cardAll,.cardHd{
     border:1px solid white !important;
@@ -30,16 +33,16 @@ border-radius: 3px  !important;
 .playArrowIcon,.checkIcon,.thumbUpOffAltIcon,.thumbDownOffAltIcon{
     width:20px !important;
     height: 20px !important;
-    border: rgba(255, 255, 255, 0.658) 2px solid;
+    border: rgba(255, 255, 255, 0.658) 3px solid;
     border-radius:50% !important;
-    padding-left: 8px !important;
-    padding-bottom: 5px !important;
-    margin-right: 7px !important;
+    padding: 3px !important;
+    padding-top: 1px !important;
+    margin-right: 10px !important;
 
 }
 
 .cardHour{
-    margin-right: 7px;
+    margin-right: 10px !important;
 }
 .icons{
     margin-top: 2px;
@@ -48,7 +51,24 @@ border-radius: 3px  !important;
     margin-bottom: 1.1rem !important;}
 
     
+    .playArrowIcon{ background-color: white;
+        color: black}
+        
+        
+    .cardHd{
+        border-radius: 3px;
+        font-size: 9px;}
 
+        .cardAll{
+            font-size: 12px;
+        }
+        
 
-
-
+        video{
+            width:100%;
+            height: 10.1rem;
+            object-fit:cover;
+            position: absolute;
+            top:0;
+            left:0;
+        }
