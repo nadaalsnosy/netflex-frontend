@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="bg-black overflow-hidden">
       <NavbarComp />
-      <MainBanner type="dss" genreTypes={videoTypes} />
+      <MainBanner type="" genreTypes={videoTypes} />
       <ListSlider listName="Recent Added" />
       {videoTypes.map((list, index) => (
         <ListSlider key={index} listName={`Popular ${list}`} />
