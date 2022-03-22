@@ -1,74 +1,76 @@
-.card-img-top{
-border-radius: 3px  !important;
-
+.card-img-top {
+  border-radius: 3px !important;
 }
 
-.cardItem{
-    width: 12rem !important;
-    height: 6.7rem !important;
-    overflow: hidden !important; 
-    border-radius:3px !important;
-    background:#141414 !important;
-    color:white !important;
-    cursor: pointer;
-     &:hover{
-        width: 18rem !important;
-        height:19rem !important;
-        position:absolute;
-        top: -150px;
-        
-     }
+.cardItem {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  overflow: hidden !important;
+  border-radius: 3px !important;
+  background: #141414 !important;
+  color: white !important;
+  cursor: pointer;
+  &:hover {
+    width: 18rem !important;
+    height: 19rem !important;
+    position: absolute;
+    top: -150px;
+  }
 }
-.cardMatching{
-    color:rgb(14, 199, 14);
-    margin-right: 10px !important;
+.cardMatching {
+  color: rgb(14, 199, 14);
+  margin-right: 10px !important;
 }
-.cardAll,.cardHd{
-    border:1px solid white !important;
-    text-align: center !important;
-    padding-right: 3px  !important;
-    margin-right: 7px;
+.cardAll,
+.cardHd {
+  border: 1px solid white !important;
+  text-align: center !important;
+  padding-right: 3px !important;
+  margin-right: 7px;
+}
+.playArrowIcon,
+.checkIcon,
+.thumbUpOffAltIcon,
+.thumbDownOffAltIcon {
+  width: 20px !important;
+  height: 20px !important;
+  border: rgba(255, 255, 255, 0.658) 3px solid;
+  border-radius: 50% !important;
+  padding: 3px !important;
+  padding-top: 1px !important;
+  margin-right: 10px !important;
+}
 
+.cardHour {
+  margin-right: 10px !important;
 }
-.playArrowIcon,.checkIcon,.thumbUpOffAltIcon,.thumbDownOffAltIcon{
-    width:20px !important;
-    height: 20px !important;
-    border: rgba(255, 255, 255, 0.658) 3px solid;
-    border-radius:50% !important;
-    padding: 3px !important;
-    padding-top: 1px !important;
-    margin-right: 10px !important;
-
-}
-
-.cardHour{
-    margin-right: 10px !important;
-}
-.icons{
-    margin-top: 2px;
+.icons {
+  margin-top: 2px;
 }
 .card-title {
-    margin-bottom: 1.1rem !important;}
+  margin-bottom: 1.1rem !important;
+}
 
-    
-    .playArrowIcon{ background-color: white;
-        color: black}
-        
-        
-    .cardHd{
-        border-radius: 3px;
-        font-size: 9px;}
+.playArrowIcon {
+  background-color: white;
+  color: black;
+}
 
-        .cardAll{
-            font-size: 12px;
-        }
-        
+.cardHd {
+  border-radius: 3px;
+  font-size: 9px;
+}
 
-        video{
-            width:100%;
-            height: 10.1rem;
-            object-fit:cover;
-            position: absolute;
-            top:0;
-            left:0;
-        }
+.cardAll {
+  font-size: 12px;
+}
+
+video {
+  width: 100%;
+  height: 10.1rem;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,4 +1,4 @@
-import logo from "../images/Logonetflix.png";
+import logo from "../../images/Logonetflix.png";
 import { Link } from "react-router-dom";
 
 const NetflixLogo = () => {

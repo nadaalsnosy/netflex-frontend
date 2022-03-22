@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Stack } from "@mui/material";
 import { PlayArrow, InfoOutlined } from "@mui/icons-material";
 
-import spiderMan from "../images/spiderMan.jpg";
+import spiderMan from "../../images/spiderMan.jpg";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
-  const { type } = props;
+  const { type, genreTypes } = props;
 
   const handelTypeName = (e) => {
     setTypeName(e.target.innerText);
@@ -15,7 +15,11 @@ const MainBanner = (props) => {
 
   return (
     <div className="mainContainer">
-      <img src={spiderMan} alt="spiderMan" />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.jpg?alt=media&token=d63b28f0-88b3-4e98-aa57-53553397e3b6"
+        alt="spiderMan"
+      />
+
       {/* <video
         autoPlay
         muted
@@ -28,40 +32,27 @@ const MainBanner = (props) => {
             <h1 className="text-white me-3 typeTitle">
               {type === "movie" ? "Movies" : "Series"}
             </h1>
-            <div class="input-group">
+            <div className="input-group">
               <button
-                class="btn btn-outline-secondary dropdown-toggle px-2 py-0 text-white border-white"
+                className="btn btn-outline-secondary dropdown-toggle px-2 py-0 text-white border-white"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 {typeName}
               </button>
-              <ul class="dropdown-menu bg-black">
-                <li
-                  className="dropdown-item text-white"
-                  onClick={handelTypeName}
-                >
-                  Action
-                </li>
-                <li
-                  className="dropdown-item text-white"
-                  onClick={handelTypeName}
-                >
-                  Comedy
-                </li>
-                <li
-                  className="dropdown-item text-white"
-                  onClick={handelTypeName}
-                >
-                  Romance
-                </li>
-                <li
-                  className="dropdown-item text-white"
-                  onClick={handelTypeName}
-                >
-                  Horrer
-                </li>
+              <ul className="dropdown-menu bg-black">
+                {genreTypes.map((list, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className="dropdown-item text-white"
+                      onClick={handelTypeName}
+                    >
+                      {list}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

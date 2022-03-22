@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
-import NetflixLogo from "../components/NetflixLogo";
+import NetflixLogo from "../components/LoggedOut/NetflixLogo";
 import LoggedOutBackground from "../components/LoggedOut/LoggedOutBackground";
 import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
 

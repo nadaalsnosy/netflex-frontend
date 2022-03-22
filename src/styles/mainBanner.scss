@@ -1,5 +1,5 @@
 .mainContainer {
-  max-height: 100vh;
+  max-height: 95vh;
   position: relative;
   .bannerOverlay {
     position: absolute;
@@ -11,7 +11,8 @@
   // video 
   {
     width: 100%;
-    object-fit: contain;
+    max-height: 95vh;
+    object-fit: cover;
   }
   .bannerInfo {
     .selectContainer {

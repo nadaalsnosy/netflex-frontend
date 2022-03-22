@@ -3,10 +3,10 @@ import { Spinner } from "react-bootstrap";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthProvider";
-import RequireAuth from "./components/RequireAuth";
-import NeedLogin from "./components/NeedLogin";
+import RequireAuth from "./components/Auth/RequireAuth";
+import NeedLogin from "./components/Auth/NeedLogin";
 
-import RequireAdminAuth from "./components/RequireAdminAuth";
+import RequireAdminAuth from "./components/Auth/RequireAdminAuth";
 
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
