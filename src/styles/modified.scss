@@ -2,10 +2,13 @@
   color: #000000;
 }
 
-
-
 .bg-white:hover {
   background: #ececec !important;
 }
 
-
+.slick-list {
+  overflow: visible;
+}
+.slick-slide {
+  position: relative;
+}

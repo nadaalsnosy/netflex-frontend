@@ -1,76 +1,47 @@
-.card-img-top {
-  border-radius: 3px !important;
-}
-
 .cardItem {
   width: 100%;
-  height: 100%;
+  height: 140px;
   padding: 5px;
-  overflow: hidden !important;
-  border-radius: 3px !important;
-  background: #141414 !important;
-  color: white !important;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #141414;
+  color: #ffffff;
   cursor: pointer;
   &:hover {
-    width: 18rem !important;
-    height: 19rem !important;
+    width: 18rem;
+    height: 24rem;
+    overflow: visible;
     position: absolute;
-    top: -150px;
+    top: -100px;
+    left: -30px;
+    z-index: 2;
+  }
+  .card-img-top {
+    border-radius: 3px;
+  }
+  video {
+    width: 100%;
+    height: 10.1rem;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .cardBoder {
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    padding: 2px 4px;
+  }
+  .cardIcon svg {
+    width: 35px;
+    height: 35px;
+    border: 3px solid #ffffffa8;
+    border-radius: 50%;
+    padding: 3px;
+  }
+  .playArrowIcon svg {
+    background-color: #ffffff;
+    color: black;
   }
 }
-.cardMatching {
-  color: rgb(14, 199, 14);
-  margin-right: 10px !important;
-}
-.cardAll,
-.cardHd {
-  border: 1px solid white !important;
-  text-align: center !important;
-  padding-right: 3px !important;
-  margin-right: 7px;
-}
-.playArrowIcon,
-.checkIcon,
-.thumbUpOffAltIcon,
-.thumbDownOffAltIcon {
-  width: 20px !important;
-  height: 20px !important;
-  border: rgba(255, 255, 255, 0.658) 3px solid;
-  border-radius: 50% !important;
-  padding: 3px !important;
-  padding-top: 1px !important;
-  margin-right: 10px !important;
-}
 
-.cardHour {
-  margin-right: 10px !important;
-}
-.icons {
-  margin-top: 2px;
-}
-.card-title {
-  margin-bottom: 1.1rem !important;
-}
-
-.playArrowIcon {
-  background-color: white;
-  color: black;
-}
-
-.cardHd {
-  border-radius: 3px;
-  font-size: 9px;
-}
-
-.cardAll {
-  font-size: 12px;
-}
-
-video {
-  width: 100%;
-  height: 10.1rem;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
