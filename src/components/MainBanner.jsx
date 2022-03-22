@@ -15,12 +15,12 @@ const MainBanner = (props) => {
 
   return (
     <div className="mainContainer">
-      {/* <img src={spiderMan} alt="spiderMan" /> */}
-      <video
+      <img src={spiderMan} alt="spiderMan" />
+      {/* <video
         autoPlay
         muted
         src="https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.mp4?alt=media&token=ad4ed7e7-a46f-44ef-b56f-7e1e4718cb68"
-      ></video>
+      ></video> */}
       <div className="overlay bannerOverlay"></div>
       <div className="bannerInfo container">
         {type && (
