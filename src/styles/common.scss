@@ -1,6 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .overlay {
   background: linear-gradient(to top, #000000ba, #00000040, #000000ba);
   height: 100%;
+}
+a {
+  text-decoration: none !important;
 }
 
 .text-orange {
@@ -11,23 +20,25 @@
 }
 
 .shown {
-  visibility: visible;
+  visibility: visible !important;
 }
 .hidden {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .none {
-  display: none;
+  display: none !important;
 }
 .block {
-  display: block;
+  display: block !important;
 }
 
 .bottom-shadow {
   box-shadow: 0px 0px 10px 0px #919090;
 }
-
+.bg-black {
+  background: #000000 !important;
+}
 .dark-blue {
   background: #376aa6;
 }
@@ -54,7 +65,7 @@
   }
 }
 
-.fs-8{
+.fs-8 {
   font-size: 12px !important;
 }
 

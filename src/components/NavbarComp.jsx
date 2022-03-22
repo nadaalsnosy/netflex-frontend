@@ -1,5 +1,7 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import avatarImg from "../images/avatar.png";
 
 import {
   Navbar,
@@ -9,36 +11,62 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 const NavbarComp = () => {
+  const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
+  const [isScrolled, setIsScrolled] = useState();
+
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
+
+  console.log(isScrolled);
+
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar
+        className={`${
+          isScrolled ? "bg-lg-black" : "homeNavbar"
+        } bg-black p-lg-0 fixed-top`}
+        expand="lg"
+        bg="dark"
+        variant="dark"
+      >
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
             <img
-              className="Netflix"
+              className="netflix"
               src="https://news.hitb.org/sites/default/files/styles/large/public/2017-11/1024px-Netflix_2015_logo.svg_.png?itok=8b8LSIN8"
-              alt=""
+              alt="netflixLogo"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#Home">Home</Nav.Link>
-              <Nav.Link href="#shows">TV Shows</Nav.Link>
+          <Navbar.Collapse
+            className="justify-content-between"
+            id="responsive-navbar-nav"
+          >
+            <Nav className="me-auto flex-row justify-content-around border border-secondary border-end-0 border-start-0 my-3 m-lg-0 border-lg-0">
+              <Link className="nav-link" to={"/home"}>
+                Home
+              </Link>
+              <Link className="nav-link" to={"/series"}>
+                TV Shows
+              </Link>
               <Link className="nav-link" to={"/movies"}>
                 Movies
               </Link>
-              <Nav.Link href="#newpopular">New & Popular</Nav.Link>
-              <Nav.Link href="#mylist">My List</Nav.Link>
+              <Link className="nav-link" to={"/myList"}>
+                My List
+              </Link>
             </Nav>
-            <Nav className="align-items-center">
-              <Nav.Link href="#deets">
-                <Form className="d-flex">
+
+            <Nav className="align-items-center flex-row px-3">
+              <Nav.Link className="flex-grow-1" to={"/"}>
+                <Form className="d-flex align-items-center">
                   <FormControl
                     type="search"
-                    placeholder="Titles,people,genres "
+                    placeholder="Titles, Genres "
                     className="me-2 searchInput"
                     aria-label="Search"
                   />
@@ -46,23 +74,21 @@ const NavbarComp = () => {
                 </Form>
               </Nav.Link>
 
-              <img
-                className="avatar"
-                src="https://th.bing.com/th/id/OIP.nhwxcWqxR9ykvLCRZsGJGAAAAA?pid=ImgDet&rs=1"
-                alt=""
-              />
-              <Nav.Link eventKey={2} href="#memes">
-                <NavDropdown title="" id="collasible-nav-dropdown">
-                  <NavDropdown.Item className="text-white" href="">
-                    Account
-                  </NavDropdown.Item>
+              <NavDropdown
+                className="ms-5 me-2 m-lg-0"
+                title={avatar}
+                id="collasible-nav-dropdown"
+                to={"/"}
+              >
+                <NavDropdown.Item className="text-white">
+                  Account
+                </NavDropdown.Item>
 
-                  <NavDropdown.Divider className="text-white" />
-                  <NavDropdown.Item className="text-white" href="">
-                    Sign out of Netflix
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav.Link>
+                <NavDropdown.Divider className="text-white" />
+                <NavDropdown.Item className="text-white">
+                  Sign out of Netflix
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

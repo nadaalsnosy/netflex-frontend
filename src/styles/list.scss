@@ -1,0 +1,28 @@
+.listItemTest {
+  width: 200px;
+  height: 100px;
+  background: white;
+  margin: 10px;
+}
+.list {
+  position: relative;
+}
+
+.wrapperList {
+  width: max-content;
+  margin-top: 20px;
+  .sliderArrow {
+    position: absolute;
+    background: #0000006e;
+    height: 70%;
+    width: 35px;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 99;
+  }
+  .itemsContainer {
+    display: flex;
+    transform: translateX(0px);
+    transition: all 1s ease-in-out;
+  }
+}
