@@ -1,18 +1,13 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
 
 const NeedLogin = () => {
   const location = useLocation();
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    setAuth({ token, user });
-  }, [setAuth]);
+  console.log(auth);
 
-  return !auth.user ? (
+  return !auth?.token ? (
     <Outlet />
   ) : (
     <Navigate to={"/home"} state={{ from: location }} replace />

@@ -2,6 +2,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import avatarImg from "../../images/avatar.png";
+import useAuth from "../../hooks/useAuth";
 
 import {
   Navbar,
@@ -15,13 +16,13 @@ import {
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
+  const { auth } = useAuth();
+  console.log(auth);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-
-  console.log(isScrolled);
 
   return (
     <>
@@ -59,6 +60,11 @@ const NavbarComp = () => {
               <Link className="nav-link" to={"/myList"}>
                 My List
               </Link>
+              {auth?.user?.isAdmin && (
+                <Link className="nav-link" to={"/showLists"}>
+                  Show Lists
+                </Link>
+              )}
             </Nav>
 
             <Nav className="align-items-center flex-row px-3">

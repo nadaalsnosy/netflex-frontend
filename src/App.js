@@ -14,6 +14,8 @@ import LoggedOutHome from "./pages/LoggedOutHome";
 
 import AdminPage from "./pages/AdminPage";
 import Home from "./pages/Home";
+import VideoPage from "./pages/VideoPage";
+
 
 import "./App.scss";
 import Movies from "./pages/Movies";
@@ -40,10 +42,12 @@ const App = () => {
 
                 {/* <Route element={<RequireAuth />}> */}
                 <Route path="/home" element={<Home />} />
+                <Route path="/mainVideo" element={<VideoPage />} />
+
                 <Route path="/movies" element={<Movies />} />
 
                 <Route element={<RequireAdminAuth />}>
-                  <Route path="/adminPage" element={<AdminPage />} />
+                  <Route path="/showLists" element={<AdminPage />} />
                 </Route>
                 {/* </Route> */}
               </Route>

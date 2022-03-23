@@ -16,7 +16,9 @@ const SignUpPage = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
+
+  console.log(auth);
 
   const [userName, setUserName] = useState("");
   const [validName, setValidName] = useState(false);
@@ -72,7 +74,7 @@ const SignUpPage = () => {
     }
     try {
       const res = await axios.post(
-        "/signUp",
+        "/api/users/signUp",
         JSON.stringify({
           username: userName,
           email: userEmail,
@@ -82,20 +84,9 @@ const SignUpPage = () => {
           headers: { "content-type": "application/json" },
         }
       );
-      const token = res?.data?.token;
-      const user = res?.data?.user;
-
-      setAuth({ token, user });
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-      
       console.log(res);
-      setUserName("");
-      setUserEmail("");
-      setUserPassword("");
-      setUserConfirmPassword("");
-      navigate("/home");
+
+      navigate("/signIn");
     } catch (err) {
       if (!err?.response) {
         console.log("No Server Response");
@@ -104,7 +95,6 @@ const SignUpPage = () => {
       } else {
         console.log("Regiseration Faild");
       }
-      // errRef.current.focus()
       console.log(err);
     }
   };

@@ -65,7 +65,7 @@ const MainBanner = (props) => {
           </p>
           <div className="linksContent">
             <Stack direction="row" spacing={1}>
-              <Link to={"/movies"}>
+              <Link to={"/mainVideo"}>
                 <Button
                   variant="outlined bg-White text-dark fs-8 banberBtn"
                   startIcon={<PlayArrow />}
