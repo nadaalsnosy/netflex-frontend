@@ -1,12 +1,13 @@
-import MovieCard from "../components/Login/MovieCard";
+import Movies from "../components/Admin/Movies";
+import AddMovie from "../components/Admin/AddNewMovie";
 
-const Movies = () => {
+const MoviesPage = () => {
   return (
     <>
-      <MovieCard />
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/6ydoiA4gXwo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <AddMovie />
+      <Movies />
     </>
   );
 };
 
-export default Movies;
+export default MoviesPage;

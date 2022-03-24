@@ -13,9 +13,10 @@ import SignUp from "./pages/SignUp";
 import LoggedOutHome from "./pages/LoggedOutHome";
 
 import AdminPage from "./pages/AdminPage";
+import MoviesModule from "./context/MoviesModule";
+
 import Home from "./pages/Home";
 import VideoPage from "./pages/VideoPage";
-
 
 import "./App.scss";
 import Movies from "./pages/Movies";
@@ -47,7 +48,8 @@ const App = () => {
                 <Route path="/movies" element={<Movies />} />
 
                 <Route element={<RequireAdminAuth />}>
-                  <Route path="/showLists" element={<AdminPage />} />
+                  {/* <Route path="/showLists" element={<AdminPage />} /> */}
+                  <Route path="/showLists/*" element={<MoviesModule />} />
                 </Route>
                 {/* </Route> */}
               </Route>
