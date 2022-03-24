@@ -21,6 +21,8 @@ import VideoPage from "./pages/VideoPage";
 import "./App.scss";
 import Movies from "./pages/Movies";
 
+import Footer from "./components/Footer";
+
 const App = () => {
   return (
     <Suspense
@@ -30,7 +32,7 @@ const App = () => {
         </div>
       }
     >
-      <div className="App">
+      <div className="App bg-dark">
         <BrowserRouter>
           <AuthProvider>
             <Routes>
@@ -41,19 +43,22 @@ const App = () => {
                   <Route path="/" element={<LoggedOutHome />} />
                 </Route>
 
+
                 {/* <Route element={<RequireAuth />}> */}
-                <Route path="/home" element={<Home />} />
+                <Route path="/*" element={<MoviesModule />} />
+
+                {/* <Route path="/home" element={<Home />} />
                 <Route path="/mainVideo" element={<VideoPage />} />
 
                 <Route path="/movies" element={<Movies />} />
 
                 <Route element={<RequireAdminAuth />}>
-                  {/* <Route path="/showLists" element={<AdminPage />} /> */}
                   <Route path="/showLists/*" element={<MoviesModule />} />
-                </Route>
+                </Route> */}
                 {/* </Route> */}
               </Route>
             </Routes>
+            <Footer />
           </AuthProvider>
         </BrowserRouter>
       </div>

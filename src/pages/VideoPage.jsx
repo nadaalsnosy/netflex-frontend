@@ -1,9 +1,6 @@
-import NavbarComp from '../components/Login/NavbarComp'
-
 const VideoPage = () => {
   return (
     <>
-<NavbarComp/>
       <div className="videoContainer">
         <video
           className="videoWatch"

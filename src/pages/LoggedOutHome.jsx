@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 import logo from "../images/Logonetflix.png";
-import oieImg from "../images/oieImg.gif";
 import helloGif from "../images/helloGif.gif";
 
-import LoggedOutFooter from "../components/LoggedOut/LoggedOutFooter";
 import LoggedOutCardsContainer from "../components/LoggedOut/LoggedOutCardsContainer";
 import LoggedOutAccordion from "../components/LoggedOut/LoggedOutAccordion";
 
@@ -50,10 +48,6 @@ const LoggedOutHome = () => {
       <section className="informationSection">
         <LoggedOutAccordion />
       </section>
-
-      <footer className="footerSection">
-        <LoggedOutFooter />
-      </footer>
     </>
   );
 };

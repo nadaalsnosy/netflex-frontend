@@ -7,7 +7,7 @@ const Movies = () => {
   const { movies } = useContext(MoviesContext);
 
   return (
-    <div className="container my-3">
+    <div className="container py-3 bg-body">
       <Table striped bordered hover size="sm" className="container">
         <thead>
           <tr>

@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const LoggedOutAccordion = () => {
   return (
-    <div className="container py-5 text-white grayBoderBottom">
+    <div className="container py-5 text-white">
       <h2 className="accordionTitle text-center">Frequently Asked Questions</h2>
       <div className="my-5">
         <Accordion className="bg-gray radius-0 mb-2">

@@ -19,7 +19,7 @@ a {
   color: #808080 !important;
 }
 .text-lightGreen {
-  color: #80d600  !important;
+  color: #80d600 !important;
 }
 
 .shown {
@@ -35,8 +35,12 @@ a {
 .block {
   display: block !important;
 }
-.mw-500{
+.mw-500 {
   max-width: 500px;
+}
+
+.pt-7 {
+  padding-top: 5rem !important;
 }
 
 .bottom-shadow {
@@ -109,4 +113,8 @@ a {
 
 .grayBoderBottom {
   border-bottom: 8px solid #323232;
+}
+
+.grayBoderTop {
+  border-top: 8px solid #323232;
 }

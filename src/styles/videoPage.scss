@@ -1,21 +1,14 @@
-.videoContainer{
-    background:black;
+.videoContainer {
+  background: black;
   position: relative;
-  width: 100vw;
+  margin: 5rem 3rem 3rem;
   padding-bottom: 56.25%;
-  height: 100vh;
+  height: 90vh;
   padding: 1rem;
   padding-top: 3rem;
-  
-
 }
 
-.videoWatch{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height: 100%;
-    
+.videoWatch {
+  width: 100%;
+  height: 100%;
 }
-    

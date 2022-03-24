@@ -1,14 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import netflexFont from "../../images/netflixFont.png";
+import netflexFont from "../images/netflixFont.png";
 
 import { faPinterest } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
-const LoggedOutFooter = () => {
+const Footer = () => {
   return (
-    <div className="footerLight centeringBody">
+    <div className="footerLight centeringBody grayBoderTop">
       <div className="d-flex justify-content-between">
         <a
           href="https://www.facebook.com/netflixmiddleeastnorthafrica/?brand_redir=475822799216240"
@@ -51,4 +51,4 @@ const LoggedOutFooter = () => {
   );
 };
 
-export default LoggedOutFooter;
+export default Footer;

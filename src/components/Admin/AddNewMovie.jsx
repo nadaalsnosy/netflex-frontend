@@ -20,7 +20,7 @@ const AddNewMovie = () => {
   };
   
   return (
-    <div className="bg-dark">
+    <div className="bg-dark pt-7">
       <div className=" p-3 px-5 container d-flex justify-content-between">
         <h3 className="text-white">Videos</h3>
 
