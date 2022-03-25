@@ -72,7 +72,7 @@ const SignUpPage = () => {
     }
     try {
       const res = await axios.post(
-        "/api/users/signUp",
+        "/users/signUp",
         JSON.stringify({
           username: userName,
           email: userEmail,

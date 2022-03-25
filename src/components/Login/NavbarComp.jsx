@@ -16,12 +16,21 @@ import {
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   console.log(auth);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
+  };
+
+  const handleLogOut = async (e) => {
+    try {
+      localStorage.removeItem("user");
+      setAuth("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -91,9 +100,11 @@ const NavbarComp = () => {
                 </Link>
 
                 <NavDropdown.Divider className="text-white" />
-                <NavDropdown.Item className="text-white">
-                  Sign out
-                </NavDropdown.Item>
+                <Link className="dropdown-item text-white" to={"/signIn"}>
+                  <span className="d-block" onClick={handleLogOut}>
+                    Sign Out
+                  </span>
+                </Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

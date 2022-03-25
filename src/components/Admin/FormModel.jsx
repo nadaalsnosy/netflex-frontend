@@ -19,19 +19,15 @@ const FormModel = (props) => {
   const { onSubmit, showForm, setShowForm, movie } = props;
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
+   const handleSubmit = (event) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === true) {
-      event.preventDefault();
-      console.log("sdasdas");
-      event.stopPropagation();
+    event.preventDefault();
+    if (!form.checkValidity() === false) {
+      onSubmit(currentMovie);
     } else {
-      console.log("dfdsfdfdsfsdfdsfsdf");
+      setValidated(true);
     }
-
-    setValidated(true);
   };
-
   const [currentMovie, setCurrentMovie] = useState(movie || defaultMovie);
 
   const handleChange = (e) => {
@@ -56,7 +52,7 @@ const FormModel = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-5">
-          <Form noValidate validated={validated}>
+          <Form onSubmit={handleSubmit} noValidate validated={validated}>
             <Row className="mb-3">
               <Form.Group
                 className="mb-3"
@@ -241,11 +237,10 @@ const FormModel = (props) => {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
-
             </Row>
-            
+
             <Row className="mt-4 flex-row-reverse">
-              <Button variant="danger col-3 text-center" onClick={handleSubmit}>
+              <Button type="submit" variant="danger col-3 text-center">
                 Save
               </Button>
             </Row>
@@ -257,4 +252,3 @@ const FormModel = (props) => {
 };
 
 export default FormModel;
-

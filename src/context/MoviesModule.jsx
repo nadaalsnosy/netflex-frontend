@@ -2,36 +2,51 @@ import { Routes, Route } from "react-router-dom";
 import Movies from "../pages/Movies";
 import Movie from "../pages/Movie";
 import { useState, useMemo, useEffect, createContext } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import NavbarComp from "../components/Login/NavbarComp";
+import useAuth from "../hooks/useAuth";
 
 import RequireAdminAuth from "../components/Auth/RequireAdminAuth";
 import Home from "../pages/Home";
 import VideoPage from "../pages/VideoPage";
 import Profile from "../pages/Profile";
 
-
 export const MoviesContext = createContext();
 
-const MoviesModule = () => {
+const MoviesModule = (type, genere) => {
   const [movies, setMovies] = useState();
+  const { auth } = useAuth();
+
+  console.log(auth.token);
 
   useEffect(() => {
     const localMovies = localStorage.getItem("movies");
 
-    if (localMovies) {
-      setMovies(JSON.parse(localMovies));
-    } else
-      axios
-        .get(
-          "https://my-json-server.typicode.com/nadaalsnosy/mockNetflix/movies"
-        )
-        .then((res) => {
-          const moviesData = res.data;
-          // moviesData.map((m) => (m._id = `${m._id}`));
-          setMovies(res.data);
+    const getMovies = async () => {
+      try {
+        const res = await axios.get(`movies/`, {
+          headers: { Authorization: `${auth.token}` },
         });
-  }, []);
+        setMovies(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMovies();
+    // if (localMovies) {
+    //   setMovies(JSON.parse(localMovies));
+    // } else
+    //   axios
+    //     .get(
+    //       "https://my-json-server.typicode.com/nadaalsnosy/mockNetflix/movies"
+    //     )
+    //     .then((res) => {
+    //       const moviesData = res.data;
+    //       // moviesData.map((m) => (m._id = `${m._id}`));
+    //       setMovies(res.data);
+    //     });
+  }, [auth.token, type, genere]);
 
   useEffect(() => {
     localStorage.setItem("movies", JSON.stringify(movies));

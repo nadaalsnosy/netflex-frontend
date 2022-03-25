@@ -29,7 +29,7 @@ const SignInPage = () => {
 
     try {
       const res = await axios.post(
-        "/api/users/signIn",
+        "/users/signIn",
         JSON.stringify({
           email: userEmail,
           password: userPassword,
