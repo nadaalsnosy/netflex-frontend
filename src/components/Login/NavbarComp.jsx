@@ -86,13 +86,13 @@ const NavbarComp = () => {
                 id="collasible-nav-dropdown"
                 to={"/"}
               >
-                <NavDropdown.Item className="text-white">
+                <Link className="dropdown-item text-white" to={"/profile"}>
                   Account
-                </NavDropdown.Item>
+                </Link>
 
                 <NavDropdown.Divider className="text-white" />
                 <NavDropdown.Item className="text-white">
-                  Sign out of Netflix
+                  Sign out
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

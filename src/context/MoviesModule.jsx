@@ -8,6 +8,7 @@ import NavbarComp from "../components/Login/NavbarComp";
 import RequireAdminAuth from "../components/Auth/RequireAdminAuth";
 import Home from "../pages/Home";
 import VideoPage from "../pages/VideoPage";
+import Profile from "../pages/Profile";
 
 
 export const MoviesContext = createContext();
@@ -50,18 +51,13 @@ const MoviesModule = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/mainVideo" element={<VideoPage />} />
+        <Route path="/profile" element={<Profile />} />
 
-        <Route  path="/showLists" element={<RequireAdminAuth />}>
+        <Route path="/showLists" element={<RequireAdminAuth />}>
           <Route index element={<Movies />} />
           <Route path=":id" element={<Movie />} />
         </Route>
       </Routes>
-      
-
-      {/* <Routes>
-        <Route index element={<Movies />} />
-        <Route path=":id" element={<Movie />} />
-      </Routes> */}
     </MoviesContext.Provider>
   );
 };
