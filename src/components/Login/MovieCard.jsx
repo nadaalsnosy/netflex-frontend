@@ -11,7 +11,7 @@ import { useState } from "react";
 const MovieCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { item } = props;
-  console.log(item);
+  // console.log(item);
 
   return (
     <Card
@@ -37,7 +37,7 @@ const MovieCard = (props) => {
           </span>
         </Card.Title>
         <Card.Text className="d-flex justify-content-between align-items-center mb-3">
-          <span className="text-lightGreen fs-6">{item.rate}% Match</span>
+          <span className="text-lightGreen fs-6">Rate {item.rate}</span>
           <span className="cardBoder fs-8">{item.limit}</span>
           <span className="fs-6"> 1h 38m</span>
           <span className="cardBoder fs-8"> HD</span>

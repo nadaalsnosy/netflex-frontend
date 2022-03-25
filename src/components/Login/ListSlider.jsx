@@ -1,15 +1,13 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import Slider from "react-slick";
 import MovieCard from "./MovieCard";
-import axios from "../../api/axios";
-import useAuth from "../../hooks/useAuth";
 import { Spinner } from "react-bootstrap";
 import { MoviesContext } from "../../context/MoviesModule";
 
 const ListSlider = (props) => {
   const { listName, type } = props;
-  const { movies, setMovies } = useContext(MoviesContext);
-  console.log(movies);
+  const { movies } = useContext(MoviesContext);
+  console.log("movies");
 
   var settings = {
     infinite: false,
@@ -44,7 +42,9 @@ const ListSlider = (props) => {
       <h2> {listName} </h2>
       <Slider {...settings}>
         {movies ? (
-          movies.map((item, i) => <MovieCard index={i} item={item} />)
+          movies.map((item, i) => (
+            <MovieCard key={item._id} index={i} item={item} />
+          ))
         ) : (
           <div className="d-flex justify-content-center p-3">
             <Spinner animation="border" variant="primary" />

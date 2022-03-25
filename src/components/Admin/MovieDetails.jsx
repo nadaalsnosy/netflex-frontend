@@ -98,8 +98,8 @@ const MovieDetails = (props) => {
 
   return (
     <>
-      <Card className="text-center movieDetailsContent">
-        <Card.Header className="text-danger fs-5">Movie Details</Card.Header>
+      <Card className="text-center movieDetailsContent bg-dark text-white">
+        <Card.Header className="text-danger fs-5 mt-5">Movie Details</Card.Header>
         <Card.Body className="container">
           <Card.Title className="mb-3 fw-bold fs-3">
             {movie.title || movieDetails.title}

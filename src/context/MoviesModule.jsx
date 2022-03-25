@@ -32,7 +32,9 @@ const MoviesModule = () => {
     };
     getMovies();
   }, [auth.token]);
+
   console.log(movies);
+  console.log("mainPage");
 
   // useEffect(() => {
   //   localStorage.setItem("movies", JSON.stringify(movies));
