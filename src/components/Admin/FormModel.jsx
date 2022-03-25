@@ -19,7 +19,7 @@ const FormModel = (props) => {
   const { onSubmit, showForm, setShowForm, movie } = props;
   const [validated, setValidated] = useState(false);
 
-   const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     if (!form.checkValidity() === false) {
@@ -31,8 +31,11 @@ const FormModel = (props) => {
   const [currentMovie, setCurrentMovie] = useState(movie || defaultMovie);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(value);
+    let { name, value } = e.target;
+
+    if (name === "isSeries") {
+      currentMovie.isSeries = value;
+    }
     setCurrentMovie((m) => ({ ...m, [name]: value }));
   };
 
@@ -84,8 +87,8 @@ const FormModel = (props) => {
                   type="text"
                   className="bg-light"
                   placeholder="video description"
-                  name="description"
-                  value={currentMovie.description}
+                  name="desc"
+                  value={currentMovie.desc}
                   onChange={handleChange}
                   required
                 />
@@ -162,7 +165,7 @@ const FormModel = (props) => {
                 >
                   <Form.Label className="ms-2">Year</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     className="bg-light"
                     placeholder="video year"
                     name="year"
@@ -232,6 +235,40 @@ const FormModel = (props) => {
                     onChange={handleChange}
                     required
                   />
+                  <Form.Control.Feedback type="invalid">
+                    Please fill input.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              
+              <Row className="mb-3 mx-0 px-0 justify-content-between">
+                <Form.Group md="6" controlId="validationCustomType">
+                  <Form.Label className="ms-2">Type</Form.Label>
+                  <Row className="px-3 mt-3">
+                    <Form.Check
+                      // inline
+                      className="col-6"
+                      label="Series"
+                      name="isSeries"
+                      type="radio"
+                      id={`series-radio`}
+                      value={true}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Form.Check
+                      // inline
+                      className="col-6"
+                      label="Movie"
+                      name="isSeries"
+                      type="radio"
+                      id={`movie-radio`}
+                      value={false}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Row>
+
                   <Form.Control.Feedback type="invalid">
                     Please fill input.
                   </Form.Control.Feedback>

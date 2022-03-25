@@ -24,7 +24,7 @@ const MoviesModule = (type, genere) => {
 
     const getMovies = async () => {
       try {
-        const res = await axios.get(`movies/`, {
+        const res = await axios.get(`/movies/`, {
           headers: { Authorization: `${auth.token}` },
         });
         setMovies(res.data);
@@ -34,18 +34,6 @@ const MoviesModule = (type, genere) => {
       }
     };
     getMovies();
-    // if (localMovies) {
-    //   setMovies(JSON.parse(localMovies));
-    // } else
-    //   axios
-    //     .get(
-    //       "https://my-json-server.typicode.com/nadaalsnosy/mockNetflix/movies"
-    //     )
-    //     .then((res) => {
-    //       const moviesData = res.data;
-    //       // moviesData.map((m) => (m._id = `${m._id}`));
-    //       setMovies(res.data);
-    //     });
   }, [auth.token, type, genere]);
 
   useEffect(() => {

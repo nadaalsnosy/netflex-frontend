@@ -3,22 +3,54 @@ import { Button } from "react-bootstrap";
 import FormModel from "./FormModel";
 import { v4 as uuid } from "uuid";
 import { MoviesContext } from "../../context/MoviesModule";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 
 const AddNewMovie = () => {
   const { setMovies } = useContext(MoviesContext);
+  const { auth } = useAuth();
 
   const [showForm, setShowForm] = useState(false);
   const handleShowForm = () => setShowForm(true);
 
-  
-  const addMovie = (movie) => {
-    setMovies((currentMovies) => [
-      ...currentMovies,
-      { ...movie, _id: uuid() },
-    ]);
+  const addMovie = async (movie) => {
+    movie._id = uuid();
+    try {
+      const res = await axios.post(
+        "/movies/",
+        JSON.stringify({
+          title: movie.title,
+          desc: movie.desc,
+          img: movie.img,
+          trailer: movie.trailer,
+          video: movie.video,
+          year: movie.year,
+          rate: movie.rate,
+          limit: movie.limit,
+          genere: movie.genere,
+          isSeries: movie.isSeries,
+        }),
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `${auth.token}`,
+          },
+        }
+      );
+
+      // setMovies((currentMovies) => [
+      //   ...currentMovies,
+      //   { ...movie, _id: uuid() },
+      // ]);
+
+      // setMovies(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+
     setShowForm(false);
   };
-  
+
   return (
     <div className="bg-dark pt-7">
       <div className=" p-3 px-5 container d-flex justify-content-between">
@@ -32,7 +64,11 @@ const AddNewMovie = () => {
         </Button>
       </div>
 
-      <FormModel onSubmit={addMovie} showForm={showForm} setShowForm={setShowForm} />
+      <FormModel
+        onSubmit={addMovie}
+        showForm={showForm}
+        setShowForm={setShowForm}
+      />
     </div>
   );
 };

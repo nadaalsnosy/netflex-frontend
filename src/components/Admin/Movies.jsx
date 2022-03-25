@@ -5,6 +5,7 @@ import { Table, Spinner } from "react-bootstrap";
 
 const Movies = () => {
   const { movies } = useContext(MoviesContext);
+  console.log(movies);
 
   return (
     <div className="container py-3 bg-body">
