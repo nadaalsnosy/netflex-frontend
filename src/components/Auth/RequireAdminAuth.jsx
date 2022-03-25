@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 const RequireAdminAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
-  console.log(auth);
+  // console.log(auth);
 
   return auth?.user?.isAdmin ? (
     <Outlet />

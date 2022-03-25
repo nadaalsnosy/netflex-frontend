@@ -13,11 +13,9 @@ import Profile from "../pages/Profile";
 
 export const MoviesContext = createContext();
 
-const MoviesModule = (type, genere) => {
+const MoviesModule = () => {
   const [movies, setMovies] = useState();
   const { auth } = useAuth();
-
-  console.log(auth.token);
 
   useEffect(() => {
     const localMovies = localStorage.getItem("movies");
@@ -28,17 +26,16 @@ const MoviesModule = (type, genere) => {
           headers: { Authorization: `${auth.token}` },
         });
         setMovies(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     getMovies();
-  }, [auth.token, type, genere]);
+  }, [auth.token]);
 
-  useEffect(() => {
-    localStorage.setItem("movies", JSON.stringify(movies));
-  }, [movies]);
+  // useEffect(() => {
+  //   localStorage.setItem("movies", JSON.stringify(movies));
+  // }, [movies]);
 
   const contextValue = useMemo(
     () => ({

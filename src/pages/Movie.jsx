@@ -7,15 +7,14 @@ const MoviePage = () => {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
   const { movies } = useContext(MoviesContext);
-  console.log(movies);
-
+  
   useEffect(() => {
     if (movies?.length) {
       setMovie(movies.find((m) => m._id === id));
     }
   }, [id, movies]);
 
-  return <MovieDetails {...movie} />;
+  return <MovieDetails movie={movie} setMovie={setMovie} />;
 };
 
 export default MoviePage;

@@ -1,10 +1,29 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import Movie from "./Movie";
-import { MoviesContext } from "../../context/MoviesModule";
+// import { MoviesContext } from "../../context/MoviesModule";
 import { Table, Spinner } from "react-bootstrap";
+import useAuth from "../../hooks/useAuth";
+import axios from "../../api/axios";
 
 const Movies = () => {
-  const { movies } = useContext(MoviesContext);
+  // const { movies, setMovies } = useContext(MoviesContext);
+
+  const [movies, setMovies] = useState();
+  const { auth } = useAuth();
+
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        const res = await axios.get(`/movies/`, {
+          headers: { Authorization: `${auth.token}` },
+        });
+        setMovies(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMovies();
+  }, [auth.token]);
   console.log(movies);
 
   return (

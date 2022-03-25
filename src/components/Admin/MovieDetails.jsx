@@ -6,14 +6,18 @@ import ConfirmForm from "./ConfirmForm";
 import { useNavigate } from "react-router-dom";
 
 import { MoviesContext } from "../../context/MoviesModule";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 
 const movieDetails = {
   _id: "UnKNOWN",
   title: "UnKNOWN TITLE",
   desc: "This description is not defined as you did not finish all data",
   img: "https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/photos%2FspiderMan.jpg?alt=media&token=e9e83c9f-7bbd-4dea-80b5-524849c1de81",
-  trailer: "https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.mp4?alt=media&token=ad4ed7e7-a46f-44ef-b56f-7e1e4718cb68",
-  video: "https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.mp4?alt=media&token=ad4ed7e7-a46f-44ef-b56f-7e1e4718cb68",
+  trailer:
+    "https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.mp4?alt=media&token=ad4ed7e7-a46f-44ef-b56f-7e1e4718cb68",
+  video:
+    "https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.mp4?alt=media&token=ad4ed7e7-a46f-44ef-b56f-7e1e4718cb68",
   year: "2000",
   rate: 50,
   limit: "All",
@@ -23,8 +27,10 @@ const movieDetails = {
 
 const MovieDetails = (props) => {
   const { setMovies } = useContext(MoviesContext);
-  const movie = props;
+  const { movie, setMovie } = props;
   const navigate = useNavigate();
+  const { auth } = useAuth();
+  console.log(movie);
 
   const [showForm, setShowForm] = useState(false);
   const handleShowForm = () => setShowForm(true);
@@ -32,7 +38,35 @@ const MovieDetails = (props) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const handleShowConfirm = () => setShowConfirm(true);
 
-  const updateMovie = (movie) => {
+  const updateMovie = async (movie) => {
+    const id = movie._id;
+    try {
+      const res = await axios.patch(
+        `/movies/${id}`,
+        JSON.stringify({
+          title: movie.title,
+          desc: movie.desc,
+          img: movie.img,
+          trailer: movie.trailer,
+          video: movie.video,
+          year: movie.year,
+          rate: movie.rate,
+          limit: movie.limit,
+          genere: movie.genere,
+          isSeries: movie.isSeries,
+        }),
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `${auth.token}`,
+          },
+        }
+      );
+      setMovie(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+
     setMovies((currentMovies) => {
       const movieIndex = currentMovies.findIndex((u) => u._id === movie._id);
       currentMovies.splice(movieIndex, 1, movie);
@@ -42,14 +76,24 @@ const MovieDetails = (props) => {
     setShowForm(false);
   };
 
-  const deleteMovie = (movie) => {
-    setMovies((currentMovies) => {
-      const newMovies = currentMovies.filter((media) => media._id !== movie._id);
-      return [...newMovies];
-    });
-
+  const deleteMovie = async (movie) => {
+    const id = movie._id;
+    try {
+      const res = await axios.delete(`/movies/${id}`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `${auth.token}`,
+        },
+      });
+      setMovies((currentMovies) => {
+        const newMovies = currentMovies.filter((media) => media._id !== id);
+        return [...newMovies];
+      });
+      navigate("/showLists");
+    } catch (error) {
+      console.log(error);
+    }
     setShowConfirm(false);
-    navigate("/showLists");
   };
 
   return (
@@ -77,7 +121,7 @@ const MovieDetails = (props) => {
             </Card.Text>
             <Card.Text className="m-auto my-2">
               <span className="fw-bold"> Genere:</span>{" "}
-              {movie.genre || movieDetails.genre}
+              {movie.genere || movieDetails.genere}
             </Card.Text>
             <Card.Text className="m-auto my-2">
               <span className="fw-bold"> Type:</span>

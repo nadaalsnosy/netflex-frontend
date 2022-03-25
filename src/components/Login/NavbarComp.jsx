@@ -17,7 +17,6 @@ const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
   const { auth, setAuth } = useAuth();
-  console.log(auth);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);

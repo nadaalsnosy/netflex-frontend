@@ -1,7 +1,7 @@
 import { Modal, Button, Form, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
-const defaultMovie = {
+let defaultMovie = {
   _id: "",
   title: "",
   desc: "",
@@ -165,7 +165,7 @@ const FormModel = (props) => {
                 >
                   <Form.Label className="ms-2">Year</Form.Label>
                   <Form.Control
-                    type="number"
+                    type="date"
                     className="bg-light"
                     placeholder="video year"
                     name="year"
@@ -240,13 +240,12 @@ const FormModel = (props) => {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
-              
+
               <Row className="mb-3 mx-0 px-0 justify-content-between">
                 <Form.Group md="6" controlId="validationCustomType">
                   <Form.Label className="ms-2">Type</Form.Label>
                   <Row className="px-3 mt-3">
                     <Form.Check
-                      // inline
                       className="col-6"
                       label="Series"
                       name="isSeries"
@@ -257,7 +256,6 @@ const FormModel = (props) => {
                       required
                     />
                     <Form.Check
-                      // inline
                       className="col-6"
                       label="Movie"
                       name="isSeries"

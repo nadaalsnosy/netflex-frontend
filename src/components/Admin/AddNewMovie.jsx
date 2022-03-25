@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { Button } from "react-bootstrap";
 import FormModel from "./FormModel";
-import { v4 as uuid } from "uuid";
 import { MoviesContext } from "../../context/MoviesModule";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
@@ -14,7 +13,6 @@ const AddNewMovie = () => {
   const handleShowForm = () => setShowForm(true);
 
   const addMovie = async (movie) => {
-    movie._id = uuid();
     try {
       const res = await axios.post(
         "/movies/",
@@ -38,16 +36,10 @@ const AddNewMovie = () => {
         }
       );
 
-      // setMovies((currentMovies) => [
-      //   ...currentMovies,
-      //   { ...movie, _id: uuid() },
-      // ]);
-
-      // setMovies(res.data);
+      setMovies((currentMovies) => [...currentMovies, { ...movie }]);
     } catch (error) {
       console.log(error);
     }
-
     setShowForm(false);
   };
 
