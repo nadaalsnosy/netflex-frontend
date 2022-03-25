@@ -16,15 +16,15 @@ export const MoviesContext = createContext();
 const MoviesModule = () => {
   const [movies, setMovies] = useState();
   const { auth } = useAuth();
+  console.log(movies);
 
   useEffect(() => {
-    const localMovies = localStorage.getItem("movies");
-
     const getMovies = async () => {
       try {
         const res = await axios.get(`/movies/`, {
           headers: { Authorization: `${auth.token}` },
         });
+        console.log(res.data);
         setMovies(res.data);
       } catch (error) {
         console.log(error);
@@ -32,6 +32,7 @@ const MoviesModule = () => {
     };
     getMovies();
   }, [auth.token]);
+  console.log(movies);
 
   // useEffect(() => {
   //   localStorage.setItem("movies", JSON.stringify(movies));
@@ -50,6 +51,9 @@ const MoviesModule = () => {
       <NavbarComp />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/movies" element={<Home type="movies" />} />
+        <Route path="/series" element={<Home type="series" />} />
+
         <Route path="/mainVideo" element={<VideoPage />} />
         <Route path="/profile" element={<Profile />} />
 
