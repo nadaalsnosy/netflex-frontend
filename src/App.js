@@ -22,6 +22,7 @@ import "./App.scss";
 import Movies from "./pages/Movies";
 
 import Footer from "./components/Footer";
+import EditProfile from "./components/EditProfile" ;
 
 const App = () => {
   return (
@@ -40,7 +41,9 @@ const App = () => {
                 <Route element={<NeedLogin />}>
                   <Route path="/signUp" element={<SignUp />} />
                   <Route path="/signIn" element={<SignIn />} />
+                  <Route path="/EditProfile" element={<EditProfile />} />
                   <Route path="/" element={<LoggedOutHome />} />
+
                 </Route>
 
 
