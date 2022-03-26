@@ -1,15 +1,47 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import axios from "../api/axios";
+import { Spinner } from "react-bootstrap";
+
 const VideoPage = () => {
+  const { id } = useParams();
+  const { auth } = useAuth();
+  const [movie, setMovie] = useState();
+  console.log(movie);
+  const getMovie = async () => {
+    try {
+      const res = await axios.get(`/movies/${id}`, {
+        headers: { Authorization: `${auth.token}` },
+      });
+      setMovie(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (auth.token) {
+      getMovie();
+    }
+  }, [auth.token]);
+
   return (
     <>
-      <div className="videoContainer">
-        <video
-          className="videoWatch"
-          controls
-          autoplay
-          name="media"
-          src="https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/braElManhg.mp4?alt=media&token=7e334bcc-f474-42b8-8090-a575b7f70570"
-        ></video>
-      </div>
+      {movie ? (
+        <div className="videoContainer">
+          <video
+            className="videoWatch"
+            controls
+            name="media"
+            src={movie.video}
+          ></video>
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center p-3">
+          <Spinner animation="border" variant="danger" />
+        </div>
+      )}
     </>
   );
 };

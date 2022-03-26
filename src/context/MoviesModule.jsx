@@ -17,20 +17,24 @@ const MoviesModule = () => {
   const [movies, setMovies] = useState();
   const { auth } = useAuth();
   console.log(movies);
+  console.log(auth);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getMovies = async () => {
+    try {
+      const res = await axios.get(`/movies/`, {
+        headers: { Authorization: `${auth.token}` },
+      });
+      setMovies(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const res = await axios.get(`/movies/`, {
-          headers: { Authorization: `${auth.token}` },
-        });
-        console.log(res.data);
-        setMovies(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getMovies();
+    if (auth.token) {
+      getMovies();
+    }
   }, [auth.token]);
 
   console.log(movies);
@@ -44,8 +48,9 @@ const MoviesModule = () => {
     () => ({
       movies,
       setMovies,
+      getMovies,
     }),
-    [movies]
+    [movies, getMovies]
   );
 
   return (
@@ -56,7 +61,7 @@ const MoviesModule = () => {
         <Route path="/movies" element={<Home type="movies" />} />
         <Route path="/series" element={<Home type="series" />} />
 
-        <Route path="/mainVideo" element={<VideoPage />} />
+        <Route path="/mainVideo/:id" element={<VideoPage />} />
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/showLists" element={<RequireAdminAuth />}>

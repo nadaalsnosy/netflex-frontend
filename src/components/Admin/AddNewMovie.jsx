@@ -6,7 +6,7 @@ import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 
 const AddNewMovie = () => {
-  const { setMovies } = useContext(MoviesContext);
+  const { setMovies, getMovies } = useContext(MoviesContext);
   const { auth } = useAuth();
 
   const [showForm, setShowForm] = useState(false);
@@ -35,8 +35,8 @@ const AddNewMovie = () => {
           },
         }
       );
-
       setMovies((currentMovies) => [...currentMovies, { ...movie }]);
+      getMovies();
     } catch (error) {
       console.log(error);
     }

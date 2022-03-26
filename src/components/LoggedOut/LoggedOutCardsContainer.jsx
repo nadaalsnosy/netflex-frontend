@@ -45,7 +45,7 @@ const LoggedOutCardsContainer = () => {
         loggedOutCards.map((card) => <LoggedOutCard key={card.imgName} {...card} />)
       ) : (
         <div className="centeringBody">
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" variant="danger" />
         </div>
       )}
     </>

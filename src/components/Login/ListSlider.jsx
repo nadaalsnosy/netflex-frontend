@@ -47,27 +47,9 @@ const ListSlider = (props) => {
           ))
         ) : (
           <div className="d-flex justify-content-center p-3">
-            <Spinner animation="border" variant="primary" />
+            <Spinner animation="border" variant="danger" />
           </div>
         )}
-        {/* {list.map((item, i) => (
-          <MovieCard index={i} item={item} />
-        ))} */}
-        {/* <MovieCard index={0} />
-        <MovieCard index={1} />
-        <MovieCard index={2} />
-        <MovieCard index={3} />
-        <MovieCard index={4} />
-        <MovieCard index={5} />
-        <MovieCard index={6} />
-        <MovieCard index={7} />
-        <MovieCard index={8} />
-        <MovieCard index={9} />
-        <MovieCard index={10} />
-        <MovieCard index={11} />
-        <MovieCard index={12} />
-        <MovieCard index={13} />
-        <MovieCard index={14} /> */}
       </Slider>
     </div>
   );

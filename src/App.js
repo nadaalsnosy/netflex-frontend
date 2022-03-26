@@ -28,7 +28,7 @@ const App = () => {
     <Suspense
       fallback={
         <div>
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" variant="danger" />
         </div>
       }
     >
