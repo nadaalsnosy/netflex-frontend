@@ -1,9 +1,11 @@
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import useAuth from "../hooks/useAuth";
+
 
 import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
+
 import NetflixLogo from "../components/LoggedOut/NetflixLogo";
 
 const userREGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,20}$/;
@@ -15,6 +17,7 @@ const EditProfile = () => {
   const errRef = useRef();
   const navigate = useNavigate();
   const { auth } = useAuth();
+
 
   console.log(auth);
 
@@ -108,7 +111,7 @@ const EditProfile = () => {
                 onSubmit={handelSubmit}
               >
                 <h1 className=" mb-5 fw-bold ">Edit Profile</h1>
-                <Form.Group className="mb-4" controlId="formGridName">
+                <Form.Group className="mb-4" controlId="formPlaintextEmail">
                   <Form.Control
                     className={`bg-gray h-50p border-0 ${
                       nameFocus && !validName ? "errInput" : ""
@@ -121,7 +124,8 @@ const EditProfile = () => {
                     required
                     aria-describedby="userName"
                     onFocus={() => setNameFocus(true)}
-                  />
+                
+                                />
                   <p
                     id="userName"
                     className={`errMsg ${
@@ -222,6 +226,10 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <div className="text-end mt-5">
+                <Link
+                    className="text-primary text-decoration-none"
+                    to={`/profile`}
+                  >
                   <Button
                     variant="danger w-100 h-50p fs-5"
                     type="submit"
@@ -236,6 +244,7 @@ const EditProfile = () => {
                   >
                     Save
                   </Button>
+                  </Link>
                 </div>
 
                
