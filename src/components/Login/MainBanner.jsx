@@ -1,41 +1,23 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "../../api/axios";
-import useAuth from "../../hooks/useAuth";
+import { useState, useContext } from "react";
 import { Spinner } from "react-bootstrap";
 
 import { Button, Stack } from "@mui/material";
 import { PlayArrow, InfoOutlined } from "@mui/icons-material";
 import spiderMan from "../../images/spiderMan.jpg";
+import { MoviesContext } from "../../context/MoviesModule";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
-  const { auth } = useAuth();
-  const [content, setContent] = useState();
-
-  const { type, genreTypes } = props;
+  const { type, genreTypes, content } = props;
+  const { setGenere, genere } = useContext(MoviesContext);
 
   const handelTypeName = (e) => {
     setTypeName(e.target.innerText);
+    setGenere(e.target.innerText);
   };
 
-  const getRandomMovie = async () => {
-    try {
-      const res = await axios.get(`/movies/random/`, {
-        headers: { Authorization: `${auth.token}` },
-      });
-      setContent(res.data);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (auth.token) {
-      getRandomMovie();
-    }
-  }, [auth.token]);
+  console.log(genere);
 
   return (
     <>
@@ -54,7 +36,7 @@ const MainBanner = (props) => {
           <div className="overlay bannerOverlay"></div>
           <div className="bannerInfo container">
             {type && (
-              <div className="container selectContainer d-flex align-items-center mb-4">
+              <div className="container selectContainer d-flex align-items-center my-4">
                 <h1 className="text-white me-3 typeTitle">
                   {type === "movie" ? "Movies" : "Series"}
                 </h1>

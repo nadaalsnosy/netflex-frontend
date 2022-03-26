@@ -1,12 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Slider from "react-slick";
 import MovieCard from "./MovieCard";
 import { Spinner } from "react-bootstrap";
 import { MoviesContext } from "../../context/MoviesModule";
+import useAuth from "../../hooks/useAuth";
 
 const ListSlider = (props) => {
-  const { listName, type } = props;
-  const { movies } = useContext(MoviesContext);
+  const { listName, type, genereName } = props;
+  const { auth } = useAuth();
+
+  const { movies, setRate, getMovies, genere, setGenere, setYear, year } =
+    useContext(MoviesContext);
   console.log("movies");
 
   var settings = {
@@ -36,6 +40,27 @@ const ListSlider = (props) => {
       },
     ],
   };
+
+  useEffect(() => {
+    if (auth.token) {
+      if (listName === "Recent Added") {
+        console.log(listName);
+        setRate(false);
+        setYear(true);
+      } else if (listName === "Most Popular") {
+        console.log(listName);
+
+        setYear(false);
+        setRate(true);
+      } else {
+        setYear(false);
+        setRate(false);
+        setGenere(genereName);
+      }
+
+      getMovies(type);
+    }
+  }, [auth.token, type, genere, year]);
 
   return (
     <div className="text-white container my-4">
