@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import useAuth from "../hooks/useAuth";
 
-
 import axios from "../api/axios";
 
 import NetflixLogo from "../components/LoggedOut/NetflixLogo";
@@ -17,7 +16,6 @@ const EditProfile = () => {
   const errRef = useRef();
   const navigate = useNavigate();
   const { auth } = useAuth();
-
 
   console.log(auth);
 
@@ -105,7 +103,12 @@ const EditProfile = () => {
         <div className="overlay">
           <NetflixLogo />
           <div className="pb-4">
-            <div style={{maxWidth:"450px !important",margin:"80px auto !important"}}>
+            <div
+              style={{
+                maxWidth: "450px !important",
+                margin: "80px auto !important",
+              }}
+            >
               <Form
                 className="signForm text-white bg-black-8 "
                 onSubmit={handelSubmit}
@@ -118,14 +121,10 @@ const EditProfile = () => {
                     } `}
                     type="text"
                     placeholder="Image URL"
-                    
                     value={auth.user.img}
                     onChange={(e) => setUserName(e.target.value)}
-                    
                     aria-describedby="imageUrl"
-                   
-                
-                                />
+                  />
                   <p
                     id="userName"
                     className={`errMsg ${
@@ -148,8 +147,7 @@ const EditProfile = () => {
                     required
                     aria-describedby="userName"
                     onFocus={() => setNameFocus(true)}
-                
-                                />
+                  />
                   <p
                     id="userName"
                     className={`errMsg ${
@@ -250,28 +248,26 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <div className="text-end mt-5">
-                <Link
+                  <Link
                     className="text-primary text-decoration-none"
                     to={`/profile`}
                   >
-                  <Button
-                    variant="danger w-100 h-50p fs-5"
-                    type="submit"
-                    disabled={
-                      !validName ||
-                      !validEmail ||
-                      !validPassword ||
-                      !validConfirmPassword
-                        ? true
-                        : false
-                    }
-                  >
-                    Save
-                  </Button>
+                    <Button
+                      variant="danger w-100 h-50p fs-5"
+                      type="submit"
+                      disabled={
+                        !validName ||
+                        !validEmail ||
+                        !validPassword ||
+                        !validConfirmPassword
+                          ? true
+                          : false
+                      }
+                    >
+                      Save
+                    </Button>
                   </Link>
                 </div>
-
-               
               </Form>
             </div>
           </div>
@@ -280,6 +276,5 @@ const EditProfile = () => {
     </>
   );
 };
-
 
 export default EditProfile;
