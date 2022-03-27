@@ -1,10 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Movie from "./Movie";
 import { MoviesContext } from "../../context/MoviesModule";
 import { Table, Spinner } from "react-bootstrap";
+import useAuth from "../../hooks/useAuth";
 
 const Movies = () => {
-  const { movies } = useContext(MoviesContext);
+  const { getMovies } = useContext(MoviesContext);
+  const [movies, setMovies] = useState();
+  const { auth } = useAuth();
+
+  const getMoviesLists = async () => {
+    setMovies(await getMovies());
+  };
+
+  useEffect(() => {
+    if (auth.token) {
+      getMoviesLists();
+    }
+  }, [auth.token]);
 
   return (
     <div className="container py-3 bg-body">

@@ -76,25 +76,22 @@ const NavbarComp = () => {
             </Nav>
 
             <Nav className="align-items-center flex-row px-3">
-              <Nav.Link className="flex-grow-1" to={"/"}>
-                <Form className="d-flex align-items-center">
-                  <FormControl
-                    type="search"
-                    placeholder="Titles, Genres "
-                    className="me-2 searchInput"
-                    aria-label="Search"
-                  />
-                  <Link to={"/search"}>
+              <Form className="d-flex align-items-center flex-grow-1">
+                <FormControl
+                  type="search"
+                  placeholder="Titles, Genres "
+                  className="me-2 searchInput"
+                  aria-label="Search"
+                />
+                <Link to={"/search"}>
                   <SearchOutlinedIcon className="icon" />
-                  </Link>
-                </Form>
-              </Nav.Link>
+                </Link>
+              </Form>
 
               <NavDropdown
                 className="ms-5 me-2 m-lg-0"
                 title={avatar}
                 id="collasible-nav-dropdown"
-                to={"/"}
               >
                 <Link className="dropdown-item text-white" to={"/profile"}>
                   Account
