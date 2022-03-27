@@ -7,10 +7,14 @@ import useAuth from "../hooks/useAuth";
 import { MoviesContext } from "../context/MoviesModule";
 
 const Home = ({ type }) => {
-  const videoTypes = ["Action", "Comedy", "Romance", "Horror", "Drama"];
+  const genreTypes = ["Action", "Comedy", "Romance", "Horror", "Drama"];
   const { auth } = useAuth();
   const [content, setContent] = useState();
-  const { getMovies, genere } = useContext(MoviesContext);
+  const [recentAdded, setRecentAdded] = useState();
+  const [mostPopular, setMostPopular] = useState();
+  const [genresMovies, setGenresMovies] = useState([]);
+
+  const { getMovies } = useContext(MoviesContext);
 
   const getRandomMovie = async () => {
     try {
@@ -21,40 +25,48 @@ const Home = ({ type }) => {
         }
       );
       setContent(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // useEffect(() => {
-  //   if (auth.token) {
-  //     getRandomMovie();
-  //     getMovies(type);
-  //   }
-  // }, [auth.token, type, genere]);
+  const loadMoviesLists = async () => {
+    setRecentAdded(await getMovies(type, "", false, true));
+    setMostPopular(await getMovies(type, "", true));
 
-  // useEffect(() => {
-  //   if (auth.token) {
-  //     getMovies(type);
-  //   }
-  // }, [auth.token, type]);
+    const genresMoviesList = [];
+    for (const genre of genreTypes) {
+      const moviesList = await getMovies(type, genre);
+      genresMoviesList.push({
+        genre,
+        moviesList,
+      });
+    }
+    setGenresMovies(genresMoviesList);
+  };
+
+  useEffect(() => {
+    if (auth.token) {
+      getRandomMovie();
+      loadMoviesLists();
+    }
+  }, [auth.token, type]);
 
   return (
     <div className="bg-black overflow-hidden">
-      <MainBanner type={type} content={content} genreTypes={videoTypes} />
+      <MainBanner type={type} content={content} genreTypes={genreTypes} />
       <div className="py-5">
-        <ListSlider listName="Recent Added" />
-        <ListSlider listName="Most Popular" />
+        <ListSlider listName="Recent Added" moviesList={recentAdded} />
+        <ListSlider listName="Most Popular" moviesList={mostPopular} />
 
-        {/* {videoTypes.map((list, index) => (
+        {genresMovies.map((item) => (
           <ListSlider
-            key={index}
-            listName={`Popular ${list}`}
+            key={item.genre}
+            listName={`Popular ${item.genre}`}
             type={type}
-            genereName={list}
+            moviesList={item.moviesList}
           />
-        ))} */}
+        ))}
       </div>
     </div>
   );
