@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Movies from "../pages/Movies";
 import Movie from "../pages/Movie";
-import { useState, useMemo, useEffect, createContext } from "react";
+import { useState, useMemo, createContext } from "react";
 import axios from "../api/axios";
 import NavbarComp from "../components/Login/NavbarComp";
 import useAuth from "../hooks/useAuth";
@@ -11,6 +11,8 @@ import Home from "../pages/Home";
 import VideoPage from "../pages/VideoPage";
 import Profile from "../pages/Profile";
 import EditProfile from "../components/EditProfile";
+import SearchPage from "../pages/SearchPage";
+import UserList from "../pages/UserList";
 
 export const MoviesContext = createContext();
 
@@ -18,8 +20,6 @@ const MoviesModule = () => {
 	const [movies, setMovies] = useState();
 
 	const { auth } = useAuth();
-	// console.log(auth);
-	// console.log(genere);
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const getMovies = async (type, genere, mostPopular, recentAdded) => {
@@ -60,6 +60,8 @@ const MoviesModule = () => {
 				<Route path="/mainVideo/:id" element={<VideoPage />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/editProfile" element={<EditProfile />} />
+				<Route path="/search" element={<SearchPage />} />
+				<Route path="/myList" element={<UserList />} />
 
 				<Route path="/showLists" element={<RequireAdminAuth />}>
 					<Route index element={<Movies />} />
