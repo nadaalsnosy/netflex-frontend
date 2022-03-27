@@ -74,20 +74,23 @@ const EditProfile = () => {
 			return;
 		}
 		try {
-			const res = await axios.post(
-				"/users/signUp",
+			const res = await axios.patch(
+				`/users/${auth.user._id}`,
 				JSON.stringify({
 					username: userName,
 					email: userEmail,
 					password: userPassword,
 				}),
 				{
-					headers: { "content-type": "application/json" },
+					headers: {
+						"content-type": "application/json",
+						Authorization: `${auth.token}`,
+					},
 				}
 			);
 			console.log(res);
 
-			navigate("/signIn");
+			navigate("/profile");
 		} catch (err) {
 			if (!err?.response) {
 				console.log("No Server Response");
@@ -99,6 +102,7 @@ const EditProfile = () => {
 			console.log(err);
 		}
 	};
+
 	return (
 		<>
 			<div className="">
@@ -245,25 +249,25 @@ const EditProfile = () => {
 								</Form.Group>
 
 								<div className="text-end mt-5">
-									<Link
+									{/* <Link
 										className="text-primary text-decoration-none"
 										to={`/profile`}
+									> */}
+									<Button
+										variant="danger w-100 h-50p fs-5"
+										type="submit"
+										disabled={
+											!validName ||
+											!validEmail ||
+											!validPassword ||
+											!validConfirmPassword
+												? true
+												: false
+										}
 									>
-										<Button
-											variant="danger w-100 h-50p fs-5"
-											type="submit"
-											disabled={
-												!validName ||
-												!validEmail ||
-												!validPassword ||
-												!validConfirmPassword
-													? true
-													: false
-											}
-										>
-											Save
-										</Button>
-									</Link>
+										Save
+									</Button>
+									{/* </Link> */}
 								</div>
 							</Form>
 						</div>
