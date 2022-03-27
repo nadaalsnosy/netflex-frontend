@@ -105,7 +105,7 @@ const EditProfile = () => {
         <div className="overlay">
           <NetflixLogo />
           <div className="pb-4">
-            <div style={{maxWidth:"450px",margin:"80px auto"}}>
+            <div style={{maxWidth:"450px !important",margin:"80px auto !important"}}>
               <Form
                 className="signForm text-white bg-black-8 "
                 onSubmit={handelSubmit}
