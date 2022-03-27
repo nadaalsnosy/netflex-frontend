@@ -1,10 +1,10 @@
 import { Form, Button } from "react-bootstrap";
 import AvatarImage from "../images/avatar.png";
 import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+// import useAuth from "../hooks/useAuth";
 
 const Profile = () => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   return (
     <>
       <div className="overlay">
@@ -13,12 +13,28 @@ const Profile = () => {
             <h1 className=" mb-5 fw-bold ">Profile</h1>
 
             <Form.Group className="mb-4" controlId="formGridEmail">
+              <div className="containerProfile d-flex justify-content-around">
               <div>
                 <img className="avatarPhoto" src={AvatarImage} alt="avatar" />
               </div>
-              <div>User name : {auth.user.username}</div>
-              <div>Email : {auth.user.email}</div>
-              <div>Password : ********</div>
+              <div className="profileData m-2 ">
+              <div className="pb-1">User name : Eman Youssef </div>
+              <div className="pb-1">Email : emanyou123@lala.com</div>
+              <div className="pb-1">Password : ******** </div>
+              </div>
+              </div>
+              {/* <div className="containerProfile d-flex justify-content-around">
+              <div>
+                <img className="avatarPhoto" src={AvatarImage} alt="avatar" />
+              </div>
+              <div className="profileData m-2 ">
+              <div className="pb-1">User name : {auth.user.username} </div>
+              <div className="pb-1">Email :{auth.user.email}</div>
+              <div className="pb-1">Password : ******** </div>
+              </div>
+              </div> */}
+             
+              
             </Form.Group>
 
             <div className="text-end  ">

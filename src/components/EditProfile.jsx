@@ -105,9 +105,9 @@ const EditProfile = () => {
         <div className="overlay">
           <NetflixLogo />
           <div className="pb-4">
-            <div>
+            <div style={{maxWidth:"450px",margin:"80px auto"}}>
               <Form
-                className="signForm text-white bg-black-8"
+                className="signForm text-white bg-black-8 "
                 onSubmit={handelSubmit}
               >
                 <h1 className=" mb-5 fw-bold ">Edit Profile</h1>
@@ -117,9 +117,33 @@ const EditProfile = () => {
                       nameFocus && !validName ? "errInput" : ""
                     } `}
                     type="text"
+                    placeholder="Image URL"
+                    
+                    value={auth.user.img}
+                    onChange={(e) => setUserName(e.target.value)}
+                    
+                    aria-describedby="imageUrl"
+                   
+                
+                                />
+                  <p
+                    id="userName"
+                    className={`errMsg ${
+                      nameFocus && !validName ? "shown" : "hidden"
+                    }`}
+                  >
+                    please enter valid Url!
+                  </p>
+                </Form.Group>
+                <Form.Group className="mb-4" controlId="formPlaintextEmail">
+                  <Form.Control
+                    className={`bg-gray h-50p border-0 ${
+                      nameFocus && !validName ? "errInput" : ""
+                    } `}
+                    type="text"
                     placeholder="Enter name"
                     ref={userRef}
-                    value={userName}
+                    value={auth.user.username}
                     onChange={(e) => setUserName(e.target.value)}
                     required
                     aria-describedby="userName"
@@ -144,7 +168,7 @@ const EditProfile = () => {
                     type="email"
                     placeholder="Enter Email"
                     ref={userRef}
-                    value={userEmail}
+                    value={auth.user.email}
                     onChange={(e) => setUserEmail(e.target.value)}
                     required
                     aria-invalid={validEmail ? false : true}
@@ -178,7 +202,7 @@ const EditProfile = () => {
                     type="password"
                     placeholder="Enter Password"
                     ref={userRef}
-                    value={userPassword}
+                    value={auth.user.password}
                     onChange={(e) => setUserPassword(e.target.value)}
                     required
                     aria-describedby="userPassword"
@@ -207,7 +231,7 @@ const EditProfile = () => {
                     type="password"
                     placeholder="Enter ConfirmPassword"
                     ref={userRef}
-                    value={userConfirmPassword}
+                    value={auth.user.passsword}
                     onChange={(e) => setUserConfirmPassword(e.target.value)}
                     required
                     aria-describedby="userConfirmPassword"
