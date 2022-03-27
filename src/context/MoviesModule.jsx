@@ -16,58 +16,37 @@ export const MoviesContext = createContext();
 
 const MoviesModule = () => {
 	const [movies, setMovies] = useState();
-	const [genere, setGenere] = useState();
-	const [rate, setRate] = useState(false);
-	const [year, setYear] = useState(false);
 
 	const { auth } = useAuth();
-	console.log(movies);
-	console.log(auth);
-	console.log(genere);
+	// console.log(auth);
+	// console.log(genere);
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const getMovies = async (type) => {
+	const getMovies = async (type, genere, mostPopular, recentAdded) => {
 		try {
 			const res = await axios.get(
 				`/movies?${type ? `type=${type}` : ""}&${
 					genere ? `genere=${genere}` : ""
-				}&${rate ? `rate=${rate}` : ""}`,
+				}&${mostPopular ? `rate=${mostPopular}` : ""}&${
+					recentAdded ? `year=${recentAdded}` : ""
+				}`,
 				{
 					headers: { Authorization: `${auth.token}` },
 				}
 			);
-			setMovies(res.data);
+			return res.data;
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
-	// useEffect(() => {
-	//   if (auth.token) {
-	//     getMovies();
-	//   }
-	// }, [auth.token]);
-
-	console.log(movies);
-	console.log("mainPage");
-
-	// useEffect(() => {
-	//   localStorage.setItem("movies", JSON.stringify(movies));
-	// }, [movies]);
 
 	const contextValue = useMemo(
 		() => ({
 			movies,
 			setMovies,
 			getMovies,
-			genere,
-			setGenere,
-			setRate,
-			rate,
-			setYear,
-			year,
 		}),
-		[movies, getMovies, setGenere, genere, rate, setRate, year, setYear]
+		[movies, getMovies]
 	);
 
 	return (

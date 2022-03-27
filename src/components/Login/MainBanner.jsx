@@ -5,19 +5,16 @@ import { Spinner } from "react-bootstrap";
 import { Button, Stack } from "@mui/material";
 import { PlayArrow, InfoOutlined } from "@mui/icons-material";
 import spiderMan from "../../images/spiderMan.jpg";
-import { MoviesContext } from "../../context/MoviesModule";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
   const { type, genreTypes, content } = props;
-  const { setGenere, genere } = useContext(MoviesContext);
 
   const handelTypeName = (e) => {
     setTypeName(e.target.innerText);
-    setGenere(e.target.innerText);
+    // todo: go to different page
+    // setGenere(e.target.innerText);
   };
-
-  console.log(genere);
 
   return (
     <>
@@ -31,7 +28,8 @@ const MainBanner = (props) => {
           <video
             autoPlay
             muted
-            src="https://res.cloudinary.com/netflix-mearn/video/upload/v1648324549/spiderMan_jwlcil.mp4"
+            // src="https://res.cloudinary.com/netflix-mearn/video/upload/v1648324549/spiderMan_jwlcil.mp4"
+            src={content.trailer}
           ></video>
           <div className="overlay bannerOverlay"></div>
           <div className="bannerInfo container">
@@ -70,7 +68,7 @@ const MainBanner = (props) => {
               <p>{content.desc}</p>
               <div className="linksContent">
                 <Stack direction="row" spacing={1}>
-                  <Link to={"/mainVideo"}>
+                  <Link to={`/mainVideo/${content._id}`}>
                     <Button
                       variant="outlined bg-White text-dark fs-8 banberBtn"
                       startIcon={<PlayArrow />}
@@ -90,7 +88,7 @@ const MainBanner = (props) => {
           </div>
         </div>
       ) : (
-        <div className="d-flex justify-content-center p-3">
+        <div className="d-flex justify-content-center p-3 mt-5">
           <Spinner animation="border" variant="danger" />
         </div>
       )}
