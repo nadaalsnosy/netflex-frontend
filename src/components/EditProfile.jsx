@@ -12,26 +12,28 @@ const emailREGEX = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 const passwordREGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
 
 const EditProfile = () => {
-  const userRef = useRef();
-  const errRef = useRef();
-  const navigate = useNavigate();
-  const { auth } = useAuth();
+	const userRef = useRef();
+	const errRef = useRef();
+	const navigate = useNavigate();
+	const { auth, setAuth } = useAuth();
 
   console.log(auth);
 
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(auth.user.username);
   const [validName, setValidName] = useState(false);
   const [nameFocus, setNameFocus] = useState(false);
 
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState(auth.user.email);
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
 
-  const [userPassword, setUserPassword] = useState("");
+  const [userPassword, setUserPassword] = useState(auth.user.password);
   const [validPassword, setValidPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
-  const [userConfirmPassword, setUserConfirmPassword] = useState("");
+  const [userConfirmPassword, setUserConfirmPassword] = useState(
+    auth.user.password
+  );
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
   const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
 
@@ -62,30 +64,40 @@ const EditProfile = () => {
     setErrMsg("");
   }, [userName, userEmail, userPassword, userConfirmPassword]);
 
-  const handelSubmit = async (e) => {
-    e.preventDefault();
-    const validName = userREGEX.test(userName);
-    const validEmail = emailREGEX.test(userEmail);
-    const validPassword = passwordREGEX.test(userPassword);
-    if (!validName || !validEmail || !validPassword) {
-      setErrMsg("Invalid data");
-      return;
-    }
-    try {
-      const res = await axios.post(
-        "/users/signUp",
-        JSON.stringify({
-          username: userName,
-          email: userEmail,
-          password: userPassword,
-        }),
-        {
-          headers: { "content-type": "application/json" },
-        }
-      );
-      console.log(res);
+	const handelSubmit = async (e) => {
+		e.preventDefault();
+		const validName = userREGEX.test(userName);
+		const validEmail = emailREGEX.test(userEmail);
+		const validPassword = passwordREGEX.test(userPassword);
+		if (!validName || !validEmail || !validPassword) {
+			setErrMsg("Invalid data");
+			return;
+		}
+		try {
+			const res = await axios.patch(
+				`/users/${auth.user._id}`,
+				JSON.stringify({
+					username: userName,
+					email: userEmail,
+					password: userPassword,
+				}),
+				{
+					headers: {
+						"content-type": "application/json",
+						Authorization: `${auth.token}`,
+					},
+				}
+			);
+			console.log(res);
+			const newUser = res?.data;
 
-      navigate("/signIn");
+			if (res.data) {
+				setAuth(() => {
+					return { ...auth, user: newUser };
+				});
+			}
+
+      navigate("/profile");
     } catch (err) {
       if (!err?.response) {
         console.log("No Server Response");
@@ -97,24 +109,20 @@ const EditProfile = () => {
       console.log(err);
     }
   };
+
   return (
     <>
       <div className="">
         <div className="overlay">
           <NetflixLogo />
           <div className="pb-4">
-            <div
-              style={{
-                maxWidth: "450px !important",
-                margin: "80px auto !important",
-              }}
-            >
+            <div>
               <Form
                 className="signForm text-white bg-black-8 "
                 onSubmit={handelSubmit}
               >
                 <h1 className=" mb-5 fw-bold ">Edit Profile</h1>
-                <Form.Group className="mb-4" controlId="formPlaintextEmail">
+                <Form.Group className="mb-4" controlId="formPlaintextImage">
                   <Form.Control
                     className={`bg-gray h-50p border-0 ${
                       nameFocus && !validName ? "errInput" : ""
@@ -134,7 +142,7 @@ const EditProfile = () => {
                     please enter valid Url!
                   </p>
                 </Form.Group>
-                <Form.Group className="mb-4" controlId="formPlaintextEmail">
+                <Form.Group className="mb-4" controlId="formPlaintextUserName">
                   <Form.Control
                     className={`bg-gray h-50p border-0 ${
                       nameFocus && !validName ? "errInput" : ""
@@ -142,7 +150,7 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Enter name"
                     ref={userRef}
-                    value={auth.user.username}
+                    value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     required
                     aria-describedby="userName"
@@ -166,7 +174,7 @@ const EditProfile = () => {
                     type="email"
                     placeholder="Enter Email"
                     ref={userRef}
-                    value={auth.user.email}
+                    value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
                     required
                     aria-invalid={validEmail ? false : true}
@@ -200,7 +208,7 @@ const EditProfile = () => {
                     type="password"
                     placeholder="Enter Password"
                     ref={userRef}
-                    value={auth.user.password}
+                    value={userPassword}
                     onChange={(e) => setUserPassword(e.target.value)}
                     required
                     aria-describedby="userPassword"
@@ -229,7 +237,7 @@ const EditProfile = () => {
                     type="password"
                     placeholder="Enter ConfirmPassword"
                     ref={userRef}
-                    value={auth.user.passsword}
+                    value={userConfirmPassword}
                     onChange={(e) => setUserConfirmPassword(e.target.value)}
                     required
                     aria-describedby="userConfirmPassword"
@@ -248,25 +256,25 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <div className="text-end mt-5">
-                  <Link
-                    className="text-primary text-decoration-none"
-                    to={`/profile`}
+                  {/* <Link
+										className="text-primary text-decoration-none"
+										to={`/profile`}
+									> */}
+                  <Button
+                    variant="danger w-100 h-50p fs-5"
+                    type="submit"
+                    disabled={
+                      !validName ||
+                      !validEmail ||
+                      !validPassword ||
+                      !validConfirmPassword
+                        ? true
+                        : false
+                    }
                   >
-                    <Button
-                      variant="danger w-100 h-50p fs-5"
-                      type="submit"
-                      disabled={
-                        !validName ||
-                        !validEmail ||
-                        !validPassword ||
-                        !validConfirmPassword
-                          ? true
-                          : false
-                      }
-                    >
-                      Save
-                    </Button>
-                  </Link>
+                    Save
+                  </Button>
+                  {/* </Link> */}
                 </div>
               </Form>
             </div>

@@ -84,7 +84,9 @@ const NavbarComp = () => {
                     className="me-2 searchInput"
                     aria-label="Search"
                   />
+                  <Link to={"/search"}>
                   <SearchOutlinedIcon className="icon" />
+                  </Link>
                 </Form>
               </Nav.Link>
 
