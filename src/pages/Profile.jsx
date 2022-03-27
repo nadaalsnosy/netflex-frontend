@@ -8,7 +8,7 @@ const Profile = () => {
   return (
     <>
       <div className="overlay">
-        <div className="pb-1 pt-1">
+        <div className="formStyle pb-1 pt-1 ">
           <Form className="signForm p-3 pt-5 my-5 text-white bg-black-8">
             <h1 className=" mb-5 fw-bold ">Profile</h1>
 
@@ -18,9 +18,9 @@ const Profile = () => {
                 <img className="avatarPhoto" src={AvatarImage} alt="avatar" />
               </div>
               <div className="profileData m-2 ">
-              <div className="pb-1">User name : Eman Youssef </div>
-              <div className="pb-1">Email : emanyou123@lala.com</div>
-              <div className="pb-1">Password : ******** </div>
+              <div className="pb-1 fw-bold">User name : Eman Youssef </div>
+              <div className="pb-1 fw-bold">Email : emanyou123@lala.com</div>
+              <div className="pb-1 fw-bold">Password : ******** </div>
               </div>
               </div>
               {/* <div className="containerProfile d-flex justify-content-around">
