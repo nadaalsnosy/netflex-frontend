@@ -12,10 +12,10 @@ const emailREGEX = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 const passwordREGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
 
 const EditProfile = () => {
-  const userRef = useRef();
-  const errRef = useRef();
-  const navigate = useNavigate();
-  const { auth } = useAuth();
+	const userRef = useRef();
+	const errRef = useRef();
+	const navigate = useNavigate();
+	const { auth, setAuth } = useAuth();
 
   console.log(auth);
 
@@ -64,31 +64,38 @@ const EditProfile = () => {
     setErrMsg("");
   }, [userName, userEmail, userPassword, userConfirmPassword]);
 
-  const handelSubmit = async (e) => {
-    e.preventDefault();
-    const validName = userREGEX.test(userName);
-    const validEmail = emailREGEX.test(userEmail);
-    const validPassword = passwordREGEX.test(userPassword);
-    if (!validName || !validEmail || !validPassword) {
-      setErrMsg("Invalid data");
-      return;
-    }
-    try {
-      const res = await axios.patch(
-        `/users/${auth.user._id}`,
-        JSON.stringify({
-          username: userName,
-          email: userEmail,
-          password: userPassword,
-        }),
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `${auth.token}`,
-          },
-        }
-      );
-      console.log(res);
+	const handelSubmit = async (e) => {
+		e.preventDefault();
+		const validName = userREGEX.test(userName);
+		const validEmail = emailREGEX.test(userEmail);
+		const validPassword = passwordREGEX.test(userPassword);
+		if (!validName || !validEmail || !validPassword) {
+			setErrMsg("Invalid data");
+			return;
+		}
+		try {
+			const res = await axios.patch(
+				`/users/${auth.user._id}`,
+				JSON.stringify({
+					username: userName,
+					email: userEmail,
+					password: userPassword,
+				}),
+				{
+					headers: {
+						"content-type": "application/json",
+						Authorization: `${auth.token}`,
+					},
+				}
+			);
+			console.log(res);
+			const newUser = res?.data;
+
+			if (res.data) {
+				setAuth(() => {
+					return { ...auth, user: newUser };
+				});
+			}
 
       navigate("/profile");
     } catch (err) {
