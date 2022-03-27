@@ -10,8 +10,8 @@ const Profile = () => {
 		<>
 			<div className="overlay">
 				<div className="formStyle pb-1 pt-1">
-					<Form className="signForm p-3 pt-5 my-5 text-white bg-black-8">
-						<h1 className=" mb-5 fw-bold ">Profile</h1>
+					<Form className="signForm p-3 pt-4 my-5 text-white bg-black-8">
+						<h1 className=" mb-5 fw-bold text-center">Profile</h1>
 
 						<Form.Group className="mb-4" controlId="formGridEmail">
 							<div className="containerProfile d-flex justify-content-around">
@@ -19,7 +19,9 @@ const Profile = () => {
 									<img className="avatarPhoto" src={AvatarImage} alt="avatar" />
 								</div>
 								<div className="profileData m-2 ">
-									<div className="pb-1 fw-bold">User name : {auth.user.username} </div>
+									<div className="pb-1 fw-bold">
+										User name : {auth.user.username}{" "}
+									</div>
 									<div className="pb-1 fw-bold">Email :{auth.user.email}</div>
 									<div className="pb-1 fw-bold">Password : ******** </div>
 								</div>
