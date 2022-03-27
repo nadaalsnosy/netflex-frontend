@@ -17,12 +17,15 @@ const MoviesModule = () => {
   const [movies, setMovies] = useState();
   const [genere, setGenere] = useState();
   const [rate, setRate] = useState(false);
-  const [year, setYear] = useState(false);
+  const [year, setYear] = useState(true);
+
+  const [recentAdded, setRecentAdded] = useState();
+  const [mostPopular, setMostPopular] = useState();
 
   const { auth } = useAuth();
   console.log(movies);
-  console.log(auth);
-  console.log(genere);
+  // console.log(auth);
+  // console.log(genere);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getMovies = async (type) => {
@@ -30,16 +33,26 @@ const MoviesModule = () => {
       const res = await axios.get(
         `/movies?${type ? `type=${type}` : ""}&${
           genere ? `genere=${genere}` : ""
-        }&${rate ? `rate=${rate}` : ""}`,
+        }&${rate ? `rate=${rate}` : ""}&${year ? `year=${year}` : ""}`,
         {
           headers: { Authorization: `${auth.token}` },
         }
       );
-      setMovies(res.data);
+      if (year) {
+        setRecentAdded(res.data);
+        console.log(res.data);
+        console.log(recentAdded);
+      } else if (rate) {
+        setMostPopular(res.data);
+      } else if (genere) {
+        setMovies(res.data);
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log(recentAdded);
 
   // useEffect(() => {
   //   if (auth.token) {
@@ -65,8 +78,21 @@ const MoviesModule = () => {
       rate,
       setYear,
       year,
+      recentAdded,
+      mostPopular,
     }),
-    [movies, getMovies, setGenere, genere, rate, setRate, year, setYear]
+    [
+      movies,
+      getMovies,
+      setGenere,
+      genere,
+      rate,
+      setRate,
+      year,
+      setYear,
+      recentAdded,
+      mostPopular,
+    ]
   );
 
   return (
