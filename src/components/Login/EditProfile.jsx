@@ -1,23 +1,20 @@
 import { Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
-import axios from "../api/axios";
-
-import NetflixLogo from "../components/LoggedOut/NetflixLogo";
+import axios from "../../api/axios";
+import NetflixLogo from "../LoggedOut/NetflixLogo";
 
 const userREGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,20}$/;
 const emailREGEX = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 const passwordREGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
 
 const EditProfile = () => {
-	const userRef = useRef();
-	const errRef = useRef();
-	const navigate = useNavigate();
-	const { auth, setAuth } = useAuth();
-
-  console.log(auth);
+  const userRef = useRef();
+  const errRef = useRef();
+  const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
 
   const [userName, setUserName] = useState(auth.user.username);
   const [validName, setValidName] = useState(false);
@@ -64,38 +61,38 @@ const EditProfile = () => {
     setErrMsg("");
   }, [userName, userEmail, userPassword, userConfirmPassword]);
 
-	const handelSubmit = async (e) => {
-		e.preventDefault();
-		const validName = userREGEX.test(userName);
-		const validEmail = emailREGEX.test(userEmail);
-		const validPassword = passwordREGEX.test(userPassword);
-		if (!validName || !validEmail || !validPassword) {
-			setErrMsg("Invalid data");
-			return;
-		}
-		try {
-			const res = await axios.patch(
-				`/users/${auth.user._id}`,
-				JSON.stringify({
-					username: userName,
-					email: userEmail,
-					password: userPassword,
-				}),
-				{
-					headers: {
-						"content-type": "application/json",
-						Authorization: `${auth.token}`,
-					},
-				}
-			);
-			console.log(res);
-			const newUser = res?.data;
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    const validName = userREGEX.test(userName);
+    const validEmail = emailREGEX.test(userEmail);
+    const validPassword = passwordREGEX.test(userPassword);
+    if (!validName || !validEmail || !validPassword) {
+      setErrMsg("Invalid data");
+      return;
+    }
+    try {
+      const res = await axios.patch(
+        `/users/${auth.user._id}`,
+        JSON.stringify({
+          username: userName,
+          email: userEmail,
+          password: userPassword,
+        }),
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `${auth.token}`,
+          },
+        }
+      );
 
-			if (res.data) {
-				setAuth(() => {
-					return { ...auth, user: newUser };
-				});
-			}
+      const newUser = res?.data;
+
+      if (res.data) {
+        setAuth(() => {
+          return { ...auth, user: newUser };
+        });
+      }
 
       navigate("/profile");
     } catch (err) {
@@ -256,10 +253,6 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <div className="text-end mt-5">
-                  {/* <Link
-										className="text-primary text-decoration-none"
-										to={`/profile`}
-									> */}
                   <Button
                     variant="danger w-100 h-50p fs-5"
                     type="submit"
@@ -274,7 +267,6 @@ const EditProfile = () => {
                   >
                     Save
                   </Button>
-                  {/* </Link> */}
                 </div>
               </Form>
             </div>

@@ -1,14 +1,10 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import Movie from "./Movie";
 import { MoviesContext } from "../../context/MoviesModule";
 import { Table, Spinner } from "react-bootstrap";
-import useAuth from "../../hooks/useAuth";
-// import axios from "../../api/axios";
 
 const Movies = () => {
   const { movies } = useContext(MoviesContext);
-  const { auth } = useAuth();
-
 
   return (
     <div className="container py-3 bg-body">

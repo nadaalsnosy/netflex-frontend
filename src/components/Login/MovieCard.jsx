@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 const MovieCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { item } = props;
-  // console.log(item);
 
   return (
     <Link to={`/mainVideo/${item._id}`}>

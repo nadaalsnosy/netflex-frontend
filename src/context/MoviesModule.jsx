@@ -10,7 +10,7 @@ import RequireAdminAuth from "../components/Auth/RequireAdminAuth";
 import Home from "../pages/Home";
 import VideoPage from "../pages/VideoPage";
 import Profile from "../pages/Profile";
-import EditProfile from "../components/EditProfile";
+import EditProfile from "../components/Login/EditProfile";
 import SearchPage from "../pages/SearchPage";
 import UserList from "../pages/UserList";
 
