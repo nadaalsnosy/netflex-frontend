@@ -15,7 +15,7 @@ const EditProfile = () => {
 	const userRef = useRef();
 	const errRef = useRef();
 	const navigate = useNavigate();
-	const { auth } = useAuth();
+	const { auth, setAuth } = useAuth();
 
 	console.log(auth);
 
@@ -89,6 +89,13 @@ const EditProfile = () => {
 				}
 			);
 			console.log(res);
+			const newUser = res?.data;
+
+			if (res.data) {
+				setAuth(() => {
+					return { ...auth, user: newUser };
+				});
+			}
 
 			navigate("/profile");
 		} catch (err) {
