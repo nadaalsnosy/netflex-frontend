@@ -52,7 +52,7 @@ const MainBanner = (props) => {
                       return (
                         <Link
                           key={index}
-                          className="dropdown-item text-white"
+                          className="dropdown-item text-white text-capitalize"
                           onClick={handelTypeName}
                           to={`${list}`}
                         >

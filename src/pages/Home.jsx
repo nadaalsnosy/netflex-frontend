@@ -66,7 +66,7 @@ const Home = ({ type }) => {
         {generesMovies.map((item) => (
           <ListSlider
             key={item.genere}
-            listName={`Popular ${item.genere}`}
+            listName={`Top ${item.genere}`}
             type={type}
             moviesList={item.moviesList}
           />
