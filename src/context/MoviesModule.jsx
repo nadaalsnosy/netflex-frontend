@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Movies from "../pages/Movies";
 import Movie from "../pages/Movie";
-import { useMemo, createContext } from "react";
+import { useMemo, createContext, useState } from "react";
 import axios from "../api/axios";
 import NavbarComp from "../components/Login/NavbarComp";
 import useAuth from "../hooks/useAuth";
@@ -20,6 +20,8 @@ export const MoviesContext = createContext();
 
 const MoviesModule = () => {
   const { auth } = useAuth();
+  const [movies, setMovies] = useState([]);
+  const [filterMovies, setFilterMovies] = useState([]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getMovies = async (type, genere, mostPopular, recentlyAdded) => {
@@ -43,8 +45,12 @@ const MoviesModule = () => {
   const contextValue = useMemo(
     () => ({
       getMovies,
+      movies,
+      setMovies,
+      filterMovies,
+      setFilterMovies,
     }),
-    [getMovies]
+    [getMovies, movies, setMovies, filterMovies, setFilterMovies]
   );
 
   return (

@@ -1,8 +1,9 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import avatarImg from "../../images/avatar.png";
 import useAuth from "../../hooks/useAuth";
+import { MoviesContext } from "../../context/MoviesModule";
 
 import {
 	Navbar,
@@ -16,15 +17,47 @@ import {
 const NavbarComp = () => {
 	const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
 	const [isScrolled, setIsScrolled] = useState();
+	const { getMovies, movies, setMovies, setFilterMovies } =
+		useContext(MoviesContext);
+
 	const [keyword, setKeyword] = useState("");
 
 	const { auth, setAuth } = useAuth();
 	const navigate = useNavigate();
+	const searchRef = useRef();
 
 	window.onscroll = () => {
 		setIsScrolled(window.pageYOffset === 0 ? false : true);
 		return () => (window.onscroll = null);
 	};
+	useEffect(() => {
+		handleSearchTerm();
+	}, [keyword]);
+
+	const handleSearchTerm = async () => {
+		if (movies) {
+			const newMovies = movies?.filter((item) => {
+				const itemTitle = item?.title;
+				return itemTitle.toLowerCase().includes(keyword.toLowerCase());
+			});
+			setFilterMovies(newMovies);
+			if (keyword !== "") {
+				navigate(`/search/:${keyword}`);
+			} else {
+				navigate("/home");
+			}
+		}
+	};
+
+	const getData = async () => {
+		setMovies(await getMovies());
+	};
+
+	useEffect(() => {
+		if (auth.token) {
+			getData();
+		}
+	}, [auth.token]);
 
 	const handleLogOut = async (e) => {
 		try {
@@ -34,12 +67,6 @@ const NavbarComp = () => {
 			console.log(err);
 		}
 	};
-
-	// const handleSearchTerm = () => {
-	//   navigate(`/search/:${keyword}`);
-	//   // setKeyword(searchRef.current?.value);
-	//   console.log(keyword);
-	// };
 
 	return (
 		<>
@@ -65,7 +92,7 @@ const NavbarComp = () => {
 						id="responsive-navbar-nav"
 					>
 						<Nav className="me-auto flex-row justify-content-around border border-secondary border-end-0 border-start-0 my-3 m-lg-0 border-lg-0">
-							<Link className="nav-link " to={"/home"}>
+							<Link className="nav-link" to={"/home"}>
 								Home
 							</Link>
 							<Link className="nav-link" to={"/series"}>
@@ -89,17 +116,15 @@ const NavbarComp = () => {
 								<FormControl
 									type="search"
 									value={keyword}
+									ref={searchRef}
 									onChange={(e) => setKeyword(e.target.value)}
 									placeholder="Titles, generes "
 									className="me-2 searchInput"
 									aria-label="Search"
 								/>
-								<Link to={`/search/:${keyword}`}>
-									<SearchOutlinedIcon
-										className="icon"
-										// onClick={handleSearchTerm}
-									/>
-								</Link>
+								{/* <Link to={`/search/:${keyword}`}> */}
+								<SearchOutlinedIcon className="icon" />
+								{/* </Link> */}
 							</Form>
 
 							<NavDropdown

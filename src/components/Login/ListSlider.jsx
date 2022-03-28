@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import { Spinner } from "react-bootstrap";
 
 const ListSlider = (props) => {
-  const { listName, type, moviesList } = props;
+  const { listName, moviesList } = props;
 
 
   var settings = {
@@ -37,7 +37,7 @@ const ListSlider = (props) => {
 
   return (
     <div className="text-white container my-4">
-      <h2> {listName} </h2>
+      <h2 className="text-capitalize"> {listName} </h2>
       <Slider {...settings}>
         {moviesList ? (
           moviesList.map((item, i) => (

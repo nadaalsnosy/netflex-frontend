@@ -29,7 +29,7 @@ const EditProfile = () => {
 	const [passwordFocus, setPasswordFocus] = useState(false);
 
 	const [userConfirmPassword, setUserConfirmPassword] = useState(
-		auth.user.confirmedPassword
+		auth.user.password
 	);
 	const [validConfirmPassword, setValidConfirmPassword] = useState(true);
 	const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);

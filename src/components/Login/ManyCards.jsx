@@ -2,7 +2,7 @@ import MovieCard from "./MovieCard";
 import { Spinner } from "react-bootstrap";
 
 const ManyCards = (props) => {
-  const { movies, pageTitle, search } = props;
+  const { movies, pageTitle } = props;
 
   return (
     <div className=" container mt-5 pt-5 mb-5 text-white fw-bold">
@@ -10,8 +10,8 @@ const ManyCards = (props) => {
       <div className="d-flex mb-2 flex-wrap justify-content-center">
         {movies ? (
           movies.map((item, i) => (
-            <div className="listCards">
-              <MovieCard key={item._id} index={i} item={item} />
+            <div key={item._id} className="listCards">
+              <MovieCard index={i} item={item} />
             </div>
           ))
         ) : (
