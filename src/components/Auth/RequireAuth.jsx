@@ -1,6 +1,5 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import NavbarComp from "../Login/NavbarComp";
 
 const RequireAuth = () => {
   const location = useLocation();
@@ -8,7 +7,6 @@ const RequireAuth = () => {
 
   return auth ? (
     <>
-      <NavbarComp />
       <Outlet />
     </>
   ) : (

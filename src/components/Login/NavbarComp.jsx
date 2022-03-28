@@ -17,7 +17,8 @@ import {
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
-  // const [filterMovies, setFilterMovies] = useState([]);
+  const { getMovies, movies, setMovies, setFilterMovies } =
+    useContext(MoviesContext);
 
   const [keyword, setKeyword] = useState("");
 
@@ -30,40 +31,18 @@ const NavbarComp = () => {
     return () => (window.onscroll = null);
   };
 
-  const { getMovies, movies, setMovies, setFilterMovies } =
-    useContext(MoviesContext);
-
-  // const handleSearchTerm = async () => {
-  //   if (movies) {
-  //     const newMovies = movies?.filter((item) => item?.title.includes(keyword));
-  //     setFilterMovies(newMovies);
-  //   }
-  //   if (searchRef?.current?.value === "") {
-  //     // navigate("/home");
-  //     console.log("navvv");
-  //   }
-  // };
-
-  const handleSearchInput = async (e) => {
-    setKeyword(e.target.value);
-    console.log(e.target.value);
-
-    if (e.target.value) {
-      console.log("inif");
-      const newMovies = movies?.filter((item) =>
-        item?.title.includes(keyword.toUpperCase() && keyword.toLowerCase())
-      );
+  const handleSearchTerm = async () => {
+    if (movies) {
+      const newMovies = movies?.filter((item) => {
+        const itemTitle = item?.title;
+        return itemTitle.toLowerCase().includes(keyword.toLowerCase());
+      });
       setFilterMovies(newMovies);
-      await navigate(`/search/:${keyword}`);
     } else {
-      navigate(`/home`);
+      navigate("/home");
     }
-
-    // if (searchRef?.current?.value === "") {
-    //   // navigate("/home");
-    //   console.log("navvv");
-    // }
   };
+
   const getData = async () => {
     setMovies(await getMovies());
   };
@@ -132,7 +111,7 @@ const NavbarComp = () => {
                   type="search"
                   value={keyword}
                   ref={searchRef}
-                  onChange={handleSearchInput}
+                  onChange={(e) => setKeyword(e.target.value)}
                   placeholder="Titles, generes "
                   className="me-2 searchInput"
                   aria-label="Search"
@@ -140,7 +119,7 @@ const NavbarComp = () => {
                 <Link to={`/search/:${keyword}`}>
                   <SearchOutlinedIcon
                     className="icon"
-                    // onClick={handleSearchTerm}
+                    onClick={handleSearchTerm}
                   />
                 </Link>
               </Form>

@@ -1,6 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";

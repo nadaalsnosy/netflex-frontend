@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import LoggedOutHome from "./pages/LoggedOutHome";
 import Footer from "./components/Footer";
 import MoviesModule from "./context/MoviesModule";
+import RequireAuth from "./components/Auth/RequireAuth";
 
 import "./App.scss";
 
@@ -33,9 +34,9 @@ const App = () => {
                   <Route path="/" element={<LoggedOutHome />} />
                 </Route>
 
-                {/* <Route element={<RequireAuth />}> */}
-                <Route path="/*" element={<MoviesModule />} />
-                {/* </Route> */}
+                <Route element={<RequireAuth />}>
+                  <Route path="/*" element={<MoviesModule />} />
+                </Route>
               </Route>
             </Routes>
             <Footer />
