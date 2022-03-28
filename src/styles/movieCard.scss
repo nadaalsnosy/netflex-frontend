@@ -19,7 +19,6 @@
   .card-img-top {
     border-radius: 3px;
     height: 10rem;
-
   }
   video {
     width: 100%;
@@ -45,5 +44,10 @@
     background-color: #ffffff;
     color: black;
   }
-}
 
+  .checkIcon svg {
+    // background-color: #fa0000;
+    color: #fa0000;
+    border-color: #fa0000;
+  }
+}

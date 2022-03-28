@@ -6,27 +6,24 @@ import {
   Check,
 } from "@mui/icons-material";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 
 const MovieCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
+  const iconRef = useRef();
   const { item } = props;
   const { genere } = useParams();
-  const { auth } = useAuth();
-  const lists = [];
-
+  const { auth, setAuth } = useAuth();
 
   const handelsetFav = async () => {
-    lists.push(item);
-    console.log(lists)
     try {
       const res = await axios.patch(
         `/users/${auth.user._id}`,
         JSON.stringify({
-          userList: lists,
+          userListItem: item,
         }),
         {
           headers: {
@@ -35,14 +32,20 @@ const MovieCard = (props) => {
           },
         }
       );
-      console.log(res.data);
+      const newUser = res?.data;
+
+      if (res.data) {
+        setAuth(() => {
+          return { ...auth, user: newUser };
+        });
+        localStorage.setItem("user", JSON.stringify(res.data));
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    // <Link to={`/mainVideo/${item._id}`}>
     <Card
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -50,15 +53,28 @@ const MovieCard = (props) => {
     >
       <Card.Img variant="top" src={item.img} />
       {isHovered && <video autoPlay muted loop src={item.trailer}></video>}
+      {/* <video autoPlay muted loop src={item.trailer}></video> */}
       <Card.Body className="pb-1 bg-black">
         <Card.Title className="d-flex justify-content-between mb-4">
-          <span className="cardIcon playArrowIcon">
-            <PlayArrow />
-          </span>
-          <span className="cardIcon">
+          <Link to={`/mainVideo/${item._id}`}>
+            <span className="cardIcon playArrowIcon">
+              <PlayArrow />
+            </span>
+          </Link>
+
+          <span
+            className={
+              auth.user?.userList?.find((m) => m._id === item._id)
+                ? "checkIcon cardIcon"
+                : "cardIcon"
+            }
+            ref={iconRef}
+            onClick={handelsetFav}
+          >
             <Check />
           </span>
-          <span className="cardIcon" onClick={handelsetFav}>
+
+          <span className="cardIcon">
             <ThumbUpOffAlt />
           </span>
           <span className="cardIcon">
@@ -74,7 +90,6 @@ const MovieCard = (props) => {
         <Card.Text className="mb-1">{item.genere}</Card.Text>
       </Card.Body>
     </Card>
-    // </Link>
   );
 };
 
