@@ -2,7 +2,7 @@ import MovieCard from "./MovieCard";
 import { Spinner } from "react-bootstrap";
 
 const ManyCards = (props) => {
-  const { movies, pageTitle } = props;
+  const { movies, pageTitle, search } = props;
 
   return (
     <div className=" container mt-5 pt-5 mb-5 text-white fw-bold">

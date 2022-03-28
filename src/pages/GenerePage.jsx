@@ -9,12 +9,11 @@ import { MoviesContext } from "../context/MoviesModule";
 const GenerePage = (type) => {
   const { auth } = useAuth();
   const { getMovies } = useContext(MoviesContext);
-  const [genresMovies, setGenresMovies] = useState([]);
-
+  const [generesMovies, setGeneresMovies] = useState([]);
   const { genere } = useParams();
 
   const loadMoviesLists = async () => {
-    setGenresMovies(await getMovies(type, genere));
+    setGeneresMovies(await getMovies(type, genere));
   };
 
   useEffect(() => {
@@ -26,8 +25,8 @@ const GenerePage = (type) => {
   return (
     <div className="bg-black overflow-hidden">
       <div className="py-5">
-        {genresMovies ? (
-          <ManyCards movies={genresMovies} pageTitle={genere} />
+        {generesMovies ? (
+          <ManyCards movies={generesMovies} pageTitle={genere} />
         ) : (
           <div className="d-flex justify-content-center p-3">
             <Spinner animation="border" variant="danger" />

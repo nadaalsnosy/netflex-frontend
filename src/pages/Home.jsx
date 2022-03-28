@@ -8,14 +8,14 @@ import { MoviesContext } from "../context/MoviesModule";
 import { useParams } from "react-router-dom";
 
 const Home = ({ type }) => {
-  const genreTypes = ["Action", "Comedy", "Romance", "Horror", "Drama"];
+  const genereTypes = ["action", "comedy", "romance", "horror", "drama"];
   const { auth } = useAuth();
   const { getMovies } = useContext(MoviesContext);
 
   const [content, setContent] = useState();
   const [recentlyAdded, setRecentlyAdded] = useState();
   const [mostPopular, setMostPopular] = useState();
-  const [genresMovies, setGenresMovies] = useState([]);
+  const [generesMovies, setGeneresMovies] = useState([]);
 
   const { genere } = useParams();
 
@@ -37,15 +37,16 @@ const Home = ({ type }) => {
     setRecentlyAdded(await getMovies(type, genere, false, true));
     setMostPopular(await getMovies(type, genere, true));
 
-    const genresMoviesList = [];
-    for (const genre of genreTypes) {
-      const moviesList = await getMovies(type, genre);
-      genresMoviesList.push({
-        genre,
+    const generesMoviesList = [];
+    for (const genere of genereTypes) {
+      const moviesList = await getMovies(type, genere);
+      generesMoviesList.push({
+        genere,
         moviesList,
       });
     }
-    setGenresMovies(genresMoviesList);
+    setGeneresMovies(generesMoviesList);
+    console.log(generesMovies)
   };
 
   useEffect(() => {
@@ -57,15 +58,15 @@ const Home = ({ type }) => {
 
   return (
     <div className="bg-black overflow-hidden">
-      <MainBanner type={type} content={content} genreTypes={genreTypes} />
+      <MainBanner type={type} content={content} genereTypes={genereTypes} />
       <div className="py-5">
         <ListSlider listName="Recently Added" moviesList={recentlyAdded} />
         <ListSlider listName="Most Popular" moviesList={mostPopular} />
 
-        {genresMovies.map((item) => (
+        {generesMovies.map((item) => (
           <ListSlider
-            key={item.genre}
-            listName={`Popular ${item.genre}`}
+            key={item.genere}
+            listName={`Popular ${item.genere}`}
             type={type}
             moviesList={item.moviesList}
           />

@@ -66,7 +66,7 @@ const MoviesModule = () => {
         <Route path="/mainVideo/:id" element={<VideoPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/editProfile" element={<EditProfile />} />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search/:keyword" element={<SearchPage />} />
         <Route path="/myList" element={<UserList />} />
 
         <Route path="/showLists" element={<RequireAdminAuth />}>

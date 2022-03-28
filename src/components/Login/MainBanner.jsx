@@ -8,7 +8,7 @@ import { PlayArrow, InfoOutlined } from "@mui/icons-material";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
-  const { type, genreTypes, content } = props;
+  const { type, genereTypes, content } = props;
 
   const handelTypeName = (e) => {
     setTypeName(e.target.innerText);
@@ -48,7 +48,7 @@ const MainBanner = (props) => {
                     {typeName}
                   </button>
                   <ul className="dropdown-menu bg-black">
-                    {genreTypes.map((list, index) => {
+                    {genereTypes.map((list, index) => {
                       return (
                         <Link
                           key={index}

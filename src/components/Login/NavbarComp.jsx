@@ -1,6 +1,6 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import avatarImg from "../../images/avatar.png";
 import useAuth from "../../hooks/useAuth";
 
@@ -16,7 +16,10 @@ import {
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
+  const [keyword, setKeyword] = useState("");
+
   const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -31,6 +34,12 @@ const NavbarComp = () => {
       console.log(err);
     }
   };
+
+  // const handleSearchTerm = () => {
+  //   navigate(`/search/:${keyword}`);
+  //   // setKeyword(searchRef.current?.value);
+  //   console.log(keyword);
+  // };
 
   return (
     <>
@@ -79,12 +88,17 @@ const NavbarComp = () => {
               <Form className="d-flex align-items-center flex-grow-1">
                 <FormControl
                   type="search"
-                  placeholder="Titles, Genres "
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="Titles, generes "
                   className="me-2 searchInput"
                   aria-label="Search"
                 />
-                <Link to={"/search"}>
-                  <SearchOutlinedIcon className="icon" />
+                <Link to={`/search/:${keyword}`}>
+                  <SearchOutlinedIcon
+                    className="icon"
+                    // onClick={handleSearchTerm}
+                  />
                 </Link>
               </Form>
 
