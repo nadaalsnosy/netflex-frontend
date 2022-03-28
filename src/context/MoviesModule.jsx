@@ -22,13 +22,13 @@ const MoviesModule = () => {
   const { auth } = useAuth();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getMovies = async (type, genere, mostPopular, recentAdded) => {
+  const getMovies = async (type, genere, mostPopular, recentlyAdded) => {
     try {
       const res = await axios.get(
         `/movies?${type ? `type=${type}` : ""}&${
           genere ? `genere=${genere}` : ""
         }&${mostPopular ? `rate=${mostPopular}` : ""}&${
-          recentAdded ? `year=${recentAdded}` : ""
+          recentlyAdded ? `year=${recentlyAdded}` : ""
         }`,
         {
           headers: { Authorization: `${auth.token}` },

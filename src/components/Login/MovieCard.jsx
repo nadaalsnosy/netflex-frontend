@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 
 import { useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 
@@ -15,7 +15,6 @@ const MovieCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const iconRef = useRef();
   const { item } = props;
-  const { genere } = useParams();
   const { auth, setAuth } = useAuth();
 
   const handelsetFav = async () => {
@@ -49,11 +48,10 @@ const MovieCard = (props) => {
     <Card
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`${genere ? "" : ""} cardItem d-block`}
+      className={`cardItem d-block`}
     >
       <Card.Img variant="top" src={item.img} />
       {isHovered && <video autoPlay muted loop src={item.trailer}></video>}
-      {/* <video autoPlay muted loop src={item.trailer}></video> */}
       <Card.Body className="pb-1 bg-black">
         <Card.Title className="d-flex justify-content-between mb-4">
           <Link to={`/mainVideo/${item._id}`}>

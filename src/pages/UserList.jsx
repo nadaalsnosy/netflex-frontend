@@ -3,7 +3,6 @@ import useAuth from "../hooks/useAuth";
 import { Spinner } from "react-bootstrap";
 
 const UserList = () => {
-  // const list = [2, 3, 4, 5, 6, 7, 8, 9, 12, 4];
   const title = "My List";
   const { auth } = useAuth();
 

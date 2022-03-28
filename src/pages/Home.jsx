@@ -13,7 +13,7 @@ const Home = ({ type }) => {
   const { getMovies } = useContext(MoviesContext);
 
   const [content, setContent] = useState();
-  const [recentAdded, setRecentAdded] = useState();
+  const [recentlyAdded, setRecentlyAdded] = useState();
   const [mostPopular, setMostPopular] = useState();
   const [genresMovies, setGenresMovies] = useState([]);
 
@@ -34,7 +34,7 @@ const Home = ({ type }) => {
   };
 
   const loadMoviesLists = async () => {
-    setRecentAdded(await getMovies(type, genere, false, true));
+    setRecentlyAdded(await getMovies(type, genere, false, true));
     setMostPopular(await getMovies(type, genere, true));
 
     const genresMoviesList = [];
@@ -59,7 +59,7 @@ const Home = ({ type }) => {
     <div className="bg-black overflow-hidden">
       <MainBanner type={type} content={content} genreTypes={genreTypes} />
       <div className="py-5">
-        <ListSlider listName="Recent Added" moviesList={recentAdded} />
+        <ListSlider listName="Recently Added" moviesList={recentlyAdded} />
         <ListSlider listName="Most Popular" moviesList={mostPopular} />
 
         {genresMovies.map((item) => (
