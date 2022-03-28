@@ -30,6 +30,9 @@ const NavbarComp = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+  useEffect(() => {
+    handleSearchTerm();
+  }, [keyword]);
 
   const handleSearchTerm = async () => {
     if (movies) {
@@ -38,6 +41,7 @@ const NavbarComp = () => {
         return itemTitle.toLowerCase().includes(keyword.toLowerCase());
       });
       setFilterMovies(newMovies);
+      navigate(`/search/:${keyword}`);
     } else {
       navigate("/home");
     }
@@ -116,12 +120,9 @@ const NavbarComp = () => {
                   className="me-2 searchInput"
                   aria-label="Search"
                 />
-                <Link to={`/search/:${keyword}`}>
-                  <SearchOutlinedIcon
-                    className="icon"
-                    onClick={handleSearchTerm}
-                  />
-                </Link>
+                {/* <Link to={`/search/:${keyword}`}> */}
+                <SearchOutlinedIcon className="icon" />
+                {/* </Link> */}
               </Form>
 
               <NavDropdown
