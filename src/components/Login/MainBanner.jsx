@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Spinner } from "react-bootstrap";
 
 import { Button, Stack } from "@mui/material";
 import { PlayArrow, InfoOutlined } from "@mui/icons-material";
-import spiderMan from "../../images/spiderMan.jpg";
+// import spiderMan from "../../images/spiderMan.jpg";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
