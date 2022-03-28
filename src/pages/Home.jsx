@@ -5,16 +5,19 @@ import ListSlider from "../components/Login/ListSlider";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 import { MoviesContext } from "../context/MoviesModule";
+import { useParams } from "react-router-dom";
 
 const Home = ({ type }) => {
   const genreTypes = ["Action", "Comedy", "Romance", "Horror", "Drama"];
   const { auth } = useAuth();
+  const { getMovies } = useContext(MoviesContext);
+
   const [content, setContent] = useState();
   const [recentAdded, setRecentAdded] = useState();
   const [mostPopular, setMostPopular] = useState();
   const [genresMovies, setGenresMovies] = useState([]);
 
-  const { getMovies } = useContext(MoviesContext);
+  const { genere } = useParams();
 
   const getRandomMovie = async () => {
     try {
@@ -31,8 +34,8 @@ const Home = ({ type }) => {
   };
 
   const loadMoviesLists = async () => {
-    setRecentAdded(await getMovies(type, "", false, true));
-    setMostPopular(await getMovies(type, "", true));
+    setRecentAdded(await getMovies(type, genere, false, true));
+    setMostPopular(await getMovies(type, genere, true));
 
     const genresMoviesList = [];
     for (const genre of genreTypes) {
@@ -50,7 +53,7 @@ const Home = ({ type }) => {
       getRandomMovie();
       loadMoviesLists();
     }
-  }, [auth.token, type]);
+  }, [auth.token, type, genere]);
 
   return (
     <div className="bg-black overflow-hidden">
