@@ -41,9 +41,11 @@ const NavbarComp = () => {
         return itemTitle.toLowerCase().includes(keyword.toLowerCase());
       });
       setFilterMovies(newMovies);
-      navigate(`/search/:${keyword}`);
-    } else {
-      navigate("/home");
+      if (keyword !== "") {
+        navigate(`/search/:${keyword}`);
+      } else {
+        navigate("/home");
+      }
     }
   };
 
