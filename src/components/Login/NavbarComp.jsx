@@ -1,8 +1,9 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import avatarImg from "../../images/avatar.png";
 import useAuth from "../../hooks/useAuth";
+import { MoviesContext } from "../../context/MoviesModule";
 
 import {
   Navbar,
@@ -16,15 +17,62 @@ import {
 const NavbarComp = () => {
   const avatar = <img className="avatar" src={avatarImg} alt="avatar" />;
   const [isScrolled, setIsScrolled] = useState();
+  // const [filterMovies, setFilterMovies] = useState([]);
+
   const [keyword, setKeyword] = useState("");
 
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
+  const searchRef = useRef();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+
+  const { getMovies, movies, setMovies, setFilterMovies } =
+    useContext(MoviesContext);
+
+  // const handleSearchTerm = async () => {
+  //   if (movies) {
+  //     const newMovies = movies?.filter((item) => item?.title.includes(keyword));
+  //     setFilterMovies(newMovies);
+  //   }
+  //   if (searchRef?.current?.value === "") {
+  //     // navigate("/home");
+  //     console.log("navvv");
+  //   }
+  // };
+
+  const handleSearchInput = async (e) => {
+    setKeyword(e.target.value);
+    console.log(e.target.value);
+
+    if (e.target.value) {
+      console.log("inif");
+      const newMovies = movies?.filter((item) =>
+        item?.title.includes(keyword.toUpperCase() && keyword.toLowerCase())
+      );
+      setFilterMovies(newMovies);
+      await navigate(`/search/:${keyword}`);
+    } else {
+      navigate(`/home`);
+    }
+
+    // if (searchRef?.current?.value === "") {
+    //   // navigate("/home");
+    //   console.log("navvv");
+    // }
+  };
+  const getData = async () => {
+    setMovies(await getMovies());
+  };
+
+  useEffect(() => {
+    if (auth.token) {
+      getData();
+    }
+  }, [auth.token]);
 
   const handleLogOut = async (e) => {
     try {
@@ -35,18 +83,12 @@ const NavbarComp = () => {
     }
   };
 
-  // const handleSearchTerm = () => {
-  //   navigate(`/search/:${keyword}`);
-  //   // setKeyword(searchRef.current?.value);
-  //   console.log(keyword);
-  // };
-
   return (
     <>
       <Navbar
         className={`${
           isScrolled ? "bg-lg-black" : "homeNavbar"
-        } bg-black p-lg-0 fixed-top`}
+        } bg-black p-lg-3 fixed-top`}
         expand="lg"
         bg="dark"
         variant="dark"
@@ -89,7 +131,8 @@ const NavbarComp = () => {
                 <FormControl
                   type="search"
                   value={keyword}
-                  onChange={(e) => setKeyword(e.target.value)}
+                  ref={searchRef}
+                  onChange={handleSearchInput}
                   placeholder="Titles, generes "
                   className="me-2 searchInput"
                   aria-label="Search"

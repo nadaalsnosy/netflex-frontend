@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import { Spinner } from "react-bootstrap";
 
 const ListSlider = (props) => {
-  const { listName, type, moviesList } = props;
+  const { listName, moviesList } = props;
 
 
   var settings = {

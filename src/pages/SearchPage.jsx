@@ -8,32 +8,45 @@ import useAuth from "../hooks/useAuth";
 
 const SearchPage = () => {
   const list = [2, 3, 4, 5, 6, 7, 8, 9, 12, 4];
+  const genereTypes = ["action", "comedy", "romance", "horror", "drama"];
+  const centerlet = "om";
+
+  // for (const item of genereTypes) {
+  //   const res = item.includes(centerlet);
+  //   console.log(res);
+  // }
   const { auth } = useAuth();
-  const { keyword } = useParams();
+  let { keyword } = useParams();
+  keyword = keyword.substring(1);
   // console.log(keyword);
 
   const title = "Your Reasult";
-  const [movies, setMovies] = useState([]);
-  const { getMovies } = useContext(MoviesContext);
+  // const [movies, setMovies] = useState([]);
+  const { filterMovies } = useContext(MoviesContext);
 
-  const loadMoviesLists = async () => {
-    setMovies(await getMovies());
-    if (movies) {
-      console.log(keyword);
-    }
-    console.log(movies);
-  };
+  // const loadMoviesLists = async () => {
+  //   setMovies(await getMovies());
+  //   console.log(movies);
 
-  useEffect(() => {
-    if (auth.token) {
-      loadMoviesLists();
-    }
-  }, [auth.token, keyword]);
+  //   if (movies) {
+  //     console.log(movies);
+  //     const newMovies = movies.filter((item) => item?.title.includes(keyword));
+  //     setMovies(newMovies);
+  //     console.log(newMovies);
+  //   }
+  //   // console.log(movies);
+  // };
+
+  // useEffect(() => {
+  //   if (auth.token) {
+  //     loadMoviesLists();
+  //   }
+  // }, [auth.token, keyword]);
 
   return (
     <>
-      {movies ? (
-        <ManyCards movies={movies} pageTitle={title} />
+      {filterMovies ? (
+        <ManyCards movies={filterMovies} pageTitle={title} />
       ) : (
         <div className="d-flex justify-content-center p-3">
           <Spinner animation="border" variant="danger" />
