@@ -1,15 +1,12 @@
-import React from "react";
-import MovieCard from "../components/Login/MovieCard"
+import ManyCards from "../components/Login/ManyCards";
+
 const SearchPage = () => {
+  const list = [2, 3, 4, 5, 6, 7, 8, 9, 12, 4];
+  const title = "Your Reasult";
+
   return (
     <>
-      <div className=" container mt-5 pt-5 mb-5 text-white fw-bold">
-       <div className="d-flex mb-2 flex-wrap"><MovieCard /><MovieCard /><MovieCard />
-      <MovieCard /><MovieCard /><MovieCard /><MovieCard /><MovieCard />
-      <MovieCard /><MovieCard /><MovieCard /><MovieCard /></div>
-      </div>;
-     
-
+      <ManyCards movies={list} pageTitle={title} />;
     </>
   );
 };

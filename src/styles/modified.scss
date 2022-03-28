@@ -23,3 +23,23 @@
   border: 0.6rem solid currentColor;
   border-right-color: transparent;
 }
+
+.listCards {
+  // position: relative;
+  flex-grow: 1;
+  min-width: 250px;
+  max-width: 280px;
+  padding: 10px;
+  .cardItem {
+    height: unset !important;
+    overflow: visible !important;
+    &:hover {
+      width: unset;
+      height: unset;
+      position: static;
+      top: -150px;
+      left: -30px;
+      z-index: 2;
+    }
+  }
+}
