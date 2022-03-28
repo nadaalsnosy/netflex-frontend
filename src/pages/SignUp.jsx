@@ -11,7 +11,6 @@ const emailREGEX = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 const passwordREGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
 
 const SignUpPage = () => {
-  const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
   const { auth } = useAuth();
@@ -35,10 +34,6 @@ const SignUpPage = () => {
   const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
 
   useEffect(() => {
     const isValid = userREGEX.test(userName);
@@ -115,7 +110,6 @@ const SignUpPage = () => {
                     } `}
                     type="text"
                     placeholder="Enter name"
-                    ref={userRef}
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     required
@@ -139,7 +133,6 @@ const SignUpPage = () => {
                     }`}
                     type="email"
                     placeholder="Enter Email"
-                    ref={userRef}
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
                     required
@@ -173,7 +166,6 @@ const SignUpPage = () => {
                     }`}
                     type="password"
                     placeholder="Enter Password"
-                    ref={userRef}
                     value={userPassword}
                     onChange={(e) => setUserPassword(e.target.value)}
                     required
@@ -202,7 +194,6 @@ const SignUpPage = () => {
                     }`}
                     type="password"
                     placeholder="Enter ConfirmPassword"
-                    ref={userRef}
                     value={userConfirmPassword}
                     onChange={(e) => setUserConfirmPassword(e.target.value)}
                     required

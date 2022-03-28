@@ -4,7 +4,6 @@ import { Spinner } from "react-bootstrap";
 
 import { Button, Stack } from "@mui/material";
 import { PlayArrow, InfoOutlined } from "@mui/icons-material";
-// import spiderMan from "../../images/spiderMan.jpg";
 
 const MainBanner = (props) => {
   const [typeName, setTypeName] = useState("Choose");
@@ -12,25 +11,13 @@ const MainBanner = (props) => {
 
   const handelTypeName = (e) => {
     setTypeName(e.target.innerText);
-    // todo: go to different page
-    // setGenere(e.target.innerText);
   };
 
   return (
     <>
       {content ? (
         <div className="mainContainer">
-          {/* <img
-         src="https://firebasestorage.googleapis.com/v0/b/netflix-9e61f.appspot.com/o/spiderMan.jpg?alt=media&token=d63b28f0-88b3-4e98-aa57-53553397e3b6"
-         alt="spiderMan"
-       /> */}
-
-          <video
-            autoPlay
-            muted
-            // src="https://res.cloudinary.com/netflix-mearn/video/upload/v1648324549/spiderMan_jwlcil.mp4"
-            src={content.trailer}
-          ></video>
+          <video autoPlay muted src={content.trailer}></video>
           <div className="overlay bannerOverlay"></div>
           <div className="bannerInfo container">
             {type && (
