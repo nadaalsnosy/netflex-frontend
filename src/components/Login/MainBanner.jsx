@@ -50,13 +50,14 @@ const MainBanner = (props) => {
                   <ul className="dropdown-menu bg-black">
                     {genreTypes.map((list, index) => {
                       return (
-                        <li
+                        <Link
                           key={index}
                           className="dropdown-item text-white"
                           onClick={handelTypeName}
+                          to={`${list}`}
                         >
                           {list}
-                        </li>
+                        </Link>
                       );
                     })}
                   </ul>

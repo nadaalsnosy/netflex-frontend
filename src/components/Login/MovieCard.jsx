@@ -7,18 +7,20 @@ import {
 } from "@mui/icons-material";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MovieCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { item } = props;
+  const { genere } = useParams();
+  console.log(genere);
 
   return (
     <Link to={`/mainVideo/${item._id}`}>
       <Card
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="cardItem d-block"
+        className={`${genere ? "col-2" : ""} cardItem d-block`}
       >
         <Card.Img variant="top" src={item.img} />
         {isHovered && <video autoPlay muted loop src={item.trailer}></video>}

@@ -13,6 +13,8 @@ import Profile from "../pages/Profile";
 import EditProfile from "../components/Login/EditProfile";
 import SearchPage from "../pages/SearchPage";
 import UserList from "../pages/UserList";
+import GenerePage from "../pages/GenerePage";
+import MainPage from "../pages/MainPage";
 
 export const MoviesContext = createContext();
 
@@ -50,8 +52,16 @@ const MoviesModule = () => {
       <NavbarComp />
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/movies" element={<Home type="movie" />} />
-        <Route path="/series" element={<Home type="series" />} />
+
+        <Route path="/movies" element={<MainPage />}>
+          <Route index element={<Home type="movie" />} />
+          <Route path=":genere" element={<GenerePage type="movie" />} />
+        </Route>
+
+        <Route path="/series" element={<MainPage />}>
+          <Route index element={<Home type="series" />} />
+          <Route path=":genere" element={<GenerePage type="series" />} />
+        </Route>
 
         <Route path="/mainVideo/:id" element={<VideoPage />} />
         <Route path="/profile" element={<Profile />} />
