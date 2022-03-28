@@ -29,7 +29,7 @@ const EditProfile = () => {
 	const [passwordFocus, setPasswordFocus] = useState(false);
 
 	const [userConfirmPassword, setUserConfirmPassword] = useState(
-		auth.user.password
+		auth.user.confirmedPassword
 	);
 	const [validConfirmPassword, setValidConfirmPassword] = useState(true);
 	const [confirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
@@ -79,7 +79,7 @@ const EditProfile = () => {
 		const validEmail = emailREGEX.test(userEmail);
 		console.log(validEmail);
 		const validPassword = passwordREGEX.test(userPassword);
-		if (!(validEmail || validName || validPassword)) {
+		if (!(validEmail && validName && validPassword)) {
 			setErrMsg("Invalid data");
 			return;
 		}
@@ -132,26 +132,7 @@ const EditProfile = () => {
 								onSubmit={handelSubmit}
 							>
 								<h1 className=" mb-5 fw-bold ">Edit Profile</h1>
-								{/* <Form.Group className="mb-4" controlId="formPlaintextImage">
-                  <Form.Control
-                    className={`bg-gray h-50p border-0 ${
-                      nameFocus && !validName ? "errInput" : ""
-                    } `}
-                    type="text"
-                    placeholder="Image URL"
-                    value={auth.user.img}
-                    onChange={(e) => setUserName(e.target.value)}
-                    aria-describedby="imageUrl"
-                  />
-                  <p
-                    id="userName"
-                    className={`errMsg ${
-                      nameFocus && !validName ? "shown" : "hidden"
-                    }`}
-                  >
-                    please enter valid Url!
-                  </p>
-                </Form.Group> */}
+
 								<Form.Group className="mb-4" controlId="formPlaintextUserName">
 									<Form.Control
 										className={`bg-gray h-50p border-0 ${
@@ -272,10 +253,10 @@ const EditProfile = () => {
 										variant="danger w-100 h-50p fs-5"
 										type="submit"
 										disabled={
-											validName ||
-											validEmail ||
-											validPassword ||
-											validConfirmPassword
+											!validName ||
+											!validEmail ||
+											!validPassword ||
+											!validConfirmPassword
 												? true
 												: false
 										}
