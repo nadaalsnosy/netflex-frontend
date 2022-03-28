@@ -36,10 +36,11 @@
     &:hover {
       width: unset;
       height: unset;
-      position: static;
-      top: -150px;
-      left: -30px;
+      position: relative;
+      top: 0;
+      left: 0;
       z-index: 2;
     }
+    
   }
 }
