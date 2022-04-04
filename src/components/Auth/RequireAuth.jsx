@@ -5,7 +5,7 @@ const RequireAuth = () => {
   const location = useLocation();
   const { auth } = useAuth();
 
-  return auth ? (
+  return auth?.token ? (
     <>
       <Outlet />
     </>
