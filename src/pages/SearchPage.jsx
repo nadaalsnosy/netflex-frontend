@@ -5,20 +5,20 @@ import ManyCards from "../components/Login/ManyCards";
 import { MoviesContext } from "../context/MoviesModule";
 
 const SearchPage = () => {
-	const title = "Your Result";
-	const { filterMovies } = useContext(MoviesContext);
+  const title = "Your Result";
+  const { filterMovies } = useContext(MoviesContext);
 
-	return (
-		<>
-			{filterMovies ? (
-				<ManyCards movies={filterMovies} pageTitle={title} />
-			) : (
-				<div className="d-flex justify-content-center p-3">
-					<Spinner animation="border" variant="danger" />
-				</div>
-			)}
-		</>
-	);
+  return (
+    <>
+      {filterMovies ? (
+        <ManyCards movies={filterMovies} pageTitle={title} />
+      ) : (
+        <div className="d-flex justify-content-center p-3">
+          <Spinner animation="border" variant="danger" />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default SearchPage;
